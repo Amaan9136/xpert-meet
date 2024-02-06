@@ -1,70 +1,77 @@
-# Getting Started with Create React App
+# video-call-using-ai
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center"> 
+  <h3 align="center">WeXpert Meet </h3>
 
-## Available Scripts
+  <p align="center">
+    video-call-using-ai!
+    <br />  
+     A Video Conference App - WeXpert Meet
+    <br />
+  </p>
+</p>
 
-In the project directory, you can run:
+<!-- TABLE OF CONTENTS -->
 
-### `npm start`
+## Table of Contents
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- [How To Run](#usage)
+- [ScreenShots](#demo)
+- [Contact](#contact)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+<!-- tutorial -->
 
-### `npm test`
+<!-- Prerequisites -->
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Usage
+<!-- install dependencies -->
+# FontAwesome
+npm install --save @fortawesome/react-fontawesome @fortawesome/free-solid-svg-icons
 
-### `npm run build`
+# XLSX for Excel file handling
+npm install --save xlsx
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# React Router
+npm install --save react-router-dom
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# React Redux
+npm install --save react-redux redux
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# React Tooltip
+npm install --save react-tooltip
 
-### `npm run eject`
+# React Calendar
+npm install --save react-calendar
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+# Firebase
+npm install --save firebase
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<!-- run below commands -->
+- Run npm install.
+- Add your firebase config details to Server/firebase.js.
+- Run "npm run start" to start the app.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+<!-- Demo -->
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Demo
 
-## Learn More
+- The App can support upto 8-12 users without having any UI alignment issues
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Desktop View
+  ![](screenshots/Desktop%20View.jpg)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Desktop Sharing View
+  ![](screenshots/Screenshare.jpg)
 
-### Code Splitting
+- Mobile View
+  <br />
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+![](screenshots/Mobile%20View.jpg)
 
-### Analyzing the Bundle Size
+<!-- CONTACT -->
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Contact
 
-### Making a Progressive Web App
+Instagram - [@Instagram](https://www.instagram.com/amaan.m.k/) - syedkhalander66@gmail.com 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Project Link: [https://github.com/Amaan9136/video-call-using-ai](https://github.com/Amaan9136/video-call-using-ai)

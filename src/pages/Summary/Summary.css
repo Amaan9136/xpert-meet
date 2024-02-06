@@ -1,0 +1,29 @@
+.btn {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  padding: 8px;
+  border: none;
+  outline: none;
+  background: none;
+  border-radius: 5px;
+  text-decoration: none;
+  background-color: #19524b;
+
+  &:hover {
+    box-shadow: 0 0 10px rgba(45, 216, 219, 0.5);
+  }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.generating-text {
+  opacity: 0;
+  animation: fadeIn 1s infinite;
+}

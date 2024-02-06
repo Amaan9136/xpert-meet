@@ -1,0 +1,1 @@
+                    <p>{generate.generatedMsg}</p>

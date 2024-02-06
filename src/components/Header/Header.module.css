@@ -1,0 +1,30 @@
+/* Header.module.css */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.header .logo {
+  display: flex;
+  align-items: center;
+  width: 124px;
+}
+
+.header .logo .help-text {
+  padding-left: 4px;
+}
+
+.icon-block {
+  font-size: 24px;
+  padding: 10px;
+}
+
+@media (max-width: 767px) {
+  /* Mobile styles */
+}
+
+@media (min-width: 768px) {
+  /* Desktop styles */
+}

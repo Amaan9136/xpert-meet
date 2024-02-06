@@ -1,0 +1,22 @@
+.messenger-container {
+  max-height: 36.25rem;
+  background-color: white;
+  color: black;
+  min-width: 300px;
+  max-width: 350px;
+  overflow-y: auto;
+  box-sizing: border-box;
+  justify-content: space-between;
+}
+
+.messenger-container .messenger-header {
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 400;
+}
+
+.messenger-container::-webkit-scrollbar {
+  display: none;
+}
