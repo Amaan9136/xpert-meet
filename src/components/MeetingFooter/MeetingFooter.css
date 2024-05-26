@@ -27,7 +27,7 @@ div[disabled] {
   opacity: 0.3;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 550px) {
   .mobile-hide{
     display: none;
   }

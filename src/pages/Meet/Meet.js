@@ -1,11 +1,11 @@
-import { useEffect, useContext } from "react";
+import { useContext, useEffect } from "react";
 import { connect } from "react-redux";
-import MainScreen from "../../components/MainScreen/MainScreen.component";
-import firepadRef, { db } from "../../server/firebase";
+import { useNavigate } from "react-router-dom";
 import { AppContext } from '../../AppContext';
 import Loader from '../../AppLoader';
-import { startVideoRecording } from '../../server/http';
-
+import MainScreen from "../../components/MainScreen/MainScreen.component";
+import firepadRef, { db } from "../../server/firebase";
+import { checkInternetConnection, startVideoRecording } from "../../server/http";
 import {
   addParticipant,
   removeParticipant,
@@ -14,10 +14,13 @@ import {
   updateParticipant,
 } from "../../store/actioncreator";
 import "./Meet.css";
-// import ErrorHandler from "../../components/ErrorHandler/ErrorHandler";
 
 function Meet(props) {
-  const { appState, setAppState, setParticipantsData } = useContext(AppContext);
+  const navigate = useNavigate();
+  if(checkInternetConnection()){
+    navigate('/internet');
+  }
+  const { appState, setAppState, appData, setParticipantsData } = useContext(AppContext);
   useEffect(() => {
     setAppState((prevAppState) => ({
       ...prevAppState,
@@ -71,6 +74,7 @@ function Meet(props) {
                 userName: name,
                 preferences: defaultPreference,
                 isHost: !isHostExists,
+                profileColor: appData.profileColor
               });
               setUser({
                 [userStatusRef.key]: { name, ...defaultPreference },
@@ -86,7 +90,7 @@ function Meet(props) {
                   ...prevData,
                   id: userStatusRef.key,
                   name,
-                  isHost: !isHostExists
+                  isHost: !isHostExists,
                 }));
                 hostStatusRef.onDisconnect().remove();
               }else{  
@@ -98,7 +102,7 @@ function Meet(props) {
                     ...prevData,
                     id: dbHostData.id,
                     name: dbHostData.userName,
-                    isHost: !isHostExists
+                    isHost: !isHostExists,
                   }));
                 }
               }
@@ -114,11 +118,12 @@ function Meet(props) {
                 },
               });
             });
-            const { userName: name, preferences = {} } = snap.val();
+            const { userName: name, preferences = {} , profileColor} = snap.val();
             addParticipant({
               [snap.key]: {
                 name,
                 ...preferences,
+                profileColor
               },
             });
           });
@@ -138,18 +143,16 @@ function Meet(props) {
     };
   }, [name, setMainStream, setUser, addParticipant, removeParticipant, updateParticipant , setParticipantsData]);
 
-  // useEffect(() => {
-  //   startVideoRecording();
-  // }, []);
+  useEffect(() => {
+    startVideoRecording();
+  }, []);
   
   return (
     <>
       {appState.loaderShow ? (
         <Loader message={"Arranging Meeting..."} />
       ) : (
-        // <ErrorHandler>
           <MainScreen name={name} />
-        /* </ErrorHandler> */
       )}
     </>
   );

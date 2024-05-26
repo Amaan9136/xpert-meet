@@ -1,7 +1,7 @@
-import React from "react";
-import Card from "../../Shared/Card/Card.component";
 import { faMicrophoneSlash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from "react";
+import Card from "../../Shared/Card/Card.component";
 import "./Participant.css";
 
 export const Participant = (props) => {

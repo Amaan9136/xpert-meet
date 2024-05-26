@@ -1,8 +1,5 @@
-// ANY CONTEXT VALUE THAT IS NEVER MENTIONED BUT IS SET SOMEWHERE CAN BE USED IN ANYWHERE BUT CANNOT USE WITHOUT SETTING IT
-//  EXAMPLE: showChatbot of property appState used in Summary Page {appState.showChatbot} BUT NEVER SET SO THE INITIAL VALUE FOR appState.showChatbot WILL BE 'UNDEFINED'
-//       THEREFORE appState.showChatbot, WHEN !appState.showChatbot GIVES 'TRUE' WHEN SET USING {setAppState(prev)=>...prev}, SO appState.showChatbot CAN BE USED WITHOUT DEFINING IT IN AppContext.js
-
-import { createContext, useState } from 'react';
+import { createContext, useRef, useState } from 'react';
+const storedAppData = JSON.parse(localStorage.getItem("appData"));
 
 export const AppContext = createContext({
   appState: {},
@@ -10,16 +7,21 @@ export const AppContext = createContext({
 });
 
 export default function AppContextProvider({ children }) {
+  const userKeyRef = useRef(Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15));
+
   const [participantsData, setParticipantsData] = useState({
     id: '',
     name: '',
     isHost: false,
-    participants: []
+    participants: [{}]
   });
-
+  
+  const profileColor = storedAppData ? storedAppData.profileColor : '';
   const [appData, setAppData] = useState({
     transcriptionMsg: '',
-    keyPoints: []
+    keyPoints: [],
+    meetMode: 'Casual',
+    profileColor: profileColor
   });
 
   const [appState, setAppState] = useState({
@@ -37,6 +39,7 @@ export default function AppContextProvider({ children }) {
   });
 
   const AppContextValues = {
+    userKey: userKeyRef.current,
     appState,
     setAppState,
     participantsData,

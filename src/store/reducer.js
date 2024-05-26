@@ -1,10 +1,10 @@
 import {
-  SET_MAIN_STREAM,
   ADD_PARTICIPANT,
-  SET_USER,
   REMOVE_PARTICIPANT,
-  UPDATE_USER,
+  SET_MAIN_STREAM,
+  SET_USER,
   UPDATE_PARTICIPANT,
+  UPDATE_USER,
 } from "./actiontypes";
 
 import {
@@ -35,8 +35,16 @@ const servers = {
   iceCandidatePoolSize: 10,
 };
 
-const generateColor = () =>
-  "#" + Math.floor(Math.random() * 16777215).toString(16);
+const generateColor = (isNewUser) => {
+  if (isNewUser) {
+    return "#" + Math.floor(Math.random() * 16777215).toString(16);
+  } else {
+    const storedAppData = JSON.parse(localStorage.getItem('appData'));
+    const storedProfileColor = storedAppData ? storedAppData.profileColor : '';
+    return storedProfileColor || '';
+  }
+};
+
 
 export const userReducer = (state = defaultUserState, action) => {
   if (action.type === SET_MAIN_STREAM) {
@@ -57,7 +65,11 @@ export const userReducer = (state = defaultUserState, action) => {
 
     if (currentUserId === newUserId)
       payload.newUser[newUserId].currentUser = true;
-    payload.newUser[newUserId].avatarColor = generateColor();
+    if (payload.newUser[newUserId].profileColor) {
+      payload.newUser[newUserId].avatarColor = payload.newUser[newUserId].profileColor
+    } else {
+      payload.newUser[newUserId].avatarColor = generateColor(true);
+    }
     let participants = { ...state.participants, ...payload.newUser };
     state = { ...state, participants };
     return state;
@@ -65,7 +77,12 @@ export const userReducer = (state = defaultUserState, action) => {
     let payload = action.payload;
     let participants = { ...state.participants };
     const userId = Object.keys(payload.currentUser)[0];
-    payload.currentUser[userId].avatarColor = generateColor();
+    console.log('second', payload.currentUser[userId].profileColor);
+    if (payload.currentUser[userId].profileColor) {
+      payload.currentUser[userId].avatarColor = payload.newUser[userId].profileColor
+    } else {
+      payload.currentUser[userId].avatarColor = generateColor();
+    }
     initializeListeners(userId);
     state = { ...state, currentUser: { ...payload.currentUser }, participants };
     return state;
@@ -92,7 +109,7 @@ export const userReducer = (state = defaultUserState, action) => {
     };
     return state;
   }
-   else if (action.type === UPDATE_PARTICIPANT) {
+  else if (action.type === UPDATE_PARTICIPANT) {
     let payload = action.payload;
     const newUserId = Object.keys(payload.newUser)[0];
 

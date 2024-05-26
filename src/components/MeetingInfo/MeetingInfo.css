@@ -10,6 +10,14 @@
   z-index: 10;
 }
 
+@media (max-width: 768px) {
+  .meeting-info-block {
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+  }
+}
+
 .meeting-info-block .meeting-header {
   display: flex;
   align-items: center;

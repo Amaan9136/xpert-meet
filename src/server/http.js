@@ -1,35 +1,12 @@
-export const downloadVideo = async (setAppState) => {
-  setAppState(prevState => ({
-    ...prevState,
-    model: {
-      ...prevState.model,
-      showModel: true,
-      modelNeedInput: false,
-      modelMsg: "Downloading the Session may take time. Please do not close the browser!"
-    },
-  }));
-  try {
-    const response = await fetch('https://amaan9136.pythonanywhere.com/download-video', {
-      method: 'GET'
-    });
+// https://amaan9136.pythonanywhere.com
+// http://localhost:5000
 
-    if (response.ok) {
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'output.mp4';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      window.URL.revokeObjectURL(url);
-    } else {
-      console.error('Failed to download video:', response.statusText);
-    }
-  } catch (error) {
-    console.error('Error downloading video:', error);
+export function checkInternetConnection() {
+  if (!navigator.onLine) {
+    // true => offline
+    return true;
   }
-};
+}
 
 export const generateSummary = async (setGenerate, transcription) => {
   try {
@@ -38,7 +15,7 @@ export const generateSummary = async (setGenerate, transcription) => {
       generatedMsg: 'Generating Brief Description...'
     });
 
-    const response = await fetch(`https://amaan9136.pythonanywhere.com/text-to-summary`, {
+    const response = await fetch(`http://localhost:5000/text-to-summary`, {
       method: 'POST',
       body: JSON.stringify({ transcription }),
       headers: {
@@ -60,10 +37,42 @@ export const generateSummary = async (setGenerate, transcription) => {
   }
 };
 
+export const downloadVideo = async (setAppState) => {
+  setAppState(prevState => ({
+    ...prevState,
+    model: {
+      showModel: true,
+      modelNeedInput: false,
+      modelMsg: "Downloading the Session may take time. Please do not close the browser!",
+    },
+  }));
+  try {
+    const response = await fetch('http://localhost:5000/download-video', {
+      method: 'GET'
+    });
+
+    if (response.ok) {
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'output.mp4';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    } else {
+      console.error('Failed to download video:', response.statusText);
+    }
+  } catch (error) {
+    console.error('Error downloading video:', error);
+  }
+};
+
 
 export const startVideoRecording = async () => {
   try {
-    const response = await fetch(`https://amaan9136.pythonanywhere.com/start-record`, {
+    const response = await fetch(`http://localhost:5000/start-record`, {
       method: 'GET'
     });
     if (response.ok) {
@@ -78,7 +87,7 @@ export const startVideoRecording = async () => {
 
 export const stopVideoRecording = async () => {
   try {
-    const response = await fetch("https://amaan9136.pythonanywhere.com/stop-record", {
+    const response = await fetch("http://localhost:5000/stop-record", {
       method: 'GET'
     });
     if (response.ok) {
@@ -91,8 +100,13 @@ export const stopVideoRecording = async () => {
   }
 };
 
-export function handleSendMail(setAppState, title, message) {
-  fetch('https://amaan9136.pythonanywhere.com/send-mail', {
+export function handleSendMail(setAppState, title, message, modelType='check-mail') {
+  setAppState(prevState => ({
+    ...prevState,
+    loaderShow: true,
+    loaderMsg: 'Sending email...'
+  }));
+  fetch('http://localhost:5000/send-mail', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -101,19 +115,38 @@ export function handleSendMail(setAppState, title, message) {
   })
     .then(response => response.text())
     .then(data => {
-      setAppState(prevState => ({
-        ...prevState,
+      setAppState({
         loaderShow: false,
         model: {
-          ...prevState.model,
           showModel: true,
           modelNeedInput: false,
           modelMsg: data,
-          modelType: 'check-email'
+          modelType: modelType
         },
-      }));
+      });
     })
     .catch(error => {
       console.error('Error:', error);
     });
 }
+
+export const onScreenshotClick = async () => {
+  try {
+    const response = await fetch('http://localhost:5000/screen-shot');
+    if (!response.ok) {
+      throw new Error(`Failed to capture screenshot: ${response.status} ${response.statusText}`);
+    }
+    const blob = await response.blob();
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'screenshot.png';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+  } catch (error) {
+    console.error('Error capturing screenshot:', error.message);
+  }
+};
+

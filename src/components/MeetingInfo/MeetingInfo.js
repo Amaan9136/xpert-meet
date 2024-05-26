@@ -12,7 +12,7 @@ const MeetingInfo = ({ setMeetingState, name }) => {
   return (
     <div className="meeting-info-block">
       <div className="meeting-header">
-        <h3>Your meeting's ready</h3>
+        <h3>Grab Your Meet link</h3>
         <FontAwesomeIcon
           className="icon"
           icon={faTimes}

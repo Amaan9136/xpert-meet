@@ -20,7 +20,7 @@ const Transcription = ({ setMeetingState }) => {
         if (event.results[i].isFinal) {
           setAppData(prev => ({
             ...prev,
-            transcriptionMsg: prev.transcriptionMsg + transcript + '.',
+            transcriptionMsg: prev.transcriptionMsg + transcript + '. ',
           }));
         } 
       }
@@ -44,7 +44,6 @@ const Transcription = ({ setMeetingState }) => {
 
   function toggleTranscription() {
     setMeetingState((prev) => ({
-      ...prev,
       showTranscripts: !prev.showTranscripts,
     }));
 
@@ -56,26 +55,23 @@ const Transcription = ({ setMeetingState }) => {
 
   return (
     <>
-      <div className={`messenger-container from-left mx-2 my-3 rounded-md`}>
-        <div className="border-b-2 pb-3 border-black sticky top-0 bg-white">
+      <div className={`messenger-container from-left mx-2 my-3`}>
           <div className="messenger-header text-2xl">
-            <p>Transcription</p>
+            <h1>Xpert Transcriber</h1>
             <FontAwesomeIcon
               className="icon transition-opa z-10"
               onClick={toggleTranscription}
               icon={faTimes}
             />
           </div>
-          <div className="flex justify-center gap-3">
+          <div className="flex justify-center gap-3 pb-2">
             <div className="">
               <FontAwesomeIcon className="" icon={faUserFriends} />
             </div>
             <p>Participants ({numberOfParticipants})</p>
           </div>
-        </div>
-
-        <div className="transcript-section pl-7 pr-3 text-left font-medium">
-          {/* {hostDetails.isHost ? <p style={{ alignItems: 'center' }}>Host: {hostDetails.name}</p> : <p style={{ alignItems: 'center' }}>this not NOT host, Host: {hostDetails.name}</p>} */}
+        <hr />
+        <div className="transcript-section pl-6 pr-3 pt-1 text-left">
           {appData.transcriptionMsg || (
             <p className="animate-pulse infinite">Talk to display transcription...</p>
           )}

@@ -1,26 +1,41 @@
-import React, { useContext, useEffect, useRef } from 'react';
-import Header from '../../components/Header/Header';
+import { faChain, faKeyboard, faVideo } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faVideo, faKeyboard, faChain } from "@fortawesome/free-solid-svg-icons";
-import "./Home.css";
-import firepadRef from '../../server/firebase';
-import Model from '../../components/Model/Model';
+import React, { useContext, useEffect, useRef } from 'react';
+import Calendar from 'react-calendar';
+import { Link, useNavigate } from 'react-router-dom';
 import { AppContext } from '../../AppContext';
 import Loader from '../../AppLoader';
-import Calendar from 'react-calendar';
-import { Link } from 'react-router-dom';
-
+import Header from '../../components/Header/Header';
+import Model from '../../components/Model/Model';
+import firepadRef from '../../server/firebase';
+import { checkInternetConnection } from "../../server/http";
+import "./Home.css";
 
 export default function Home({ setUserName }) {
+  const navigate = useNavigate();
+  if (checkInternetConnection()) {
+    navigate('/internet');
+  }
   const inputRef = useRef(null);
   const joinRef = useRef(null);
   const { appState, setAppState, participantsData } = useContext(AppContext);
   function handleCalendar() {
+    setAppState((prevAppState) => ({
+      ...prevAppState,
+      calendar: {
+        ...prevAppState.calendar,
+        showCalendar: !prevAppState.calendar.showCalendar,
+      },
+    }));
+  }
+
+  function handleSettings() {
     setAppState({
       ...appState,
-      calendar: {
-        ...appState.calendar,
-        showCalendar: !appState.calendar.showCalendar,
+      model: {
+        showModel: true,
+        modelType: 'settings',
+        modelMsg: "Settings:"
       },
     });
   }
@@ -28,6 +43,11 @@ export default function Home({ setUserName }) {
   const handleCalendarChange = (selectedDate) => {
     const dateString = selectedDate.toISOString();
     localStorage.setItem('selectedDate', dateString);
+
+    const currentDate = new Date();
+    const selectedDateObj = new Date(dateString);
+
+    const isPastDate = selectedDateObj.setHours(0, 0, 0, 0) < currentDate.setHours(0, 0, 0, 0);
 
     setAppState((prevAppState) => ({
       ...prevAppState,
@@ -38,9 +58,16 @@ export default function Home({ setUserName }) {
       loaderShow: false,
       model: {
         showModel: true,
-        modelType: 'date',
-        modelMsg: `Date Set Successfully! ${window.location.href}?id=${firepadRef.key} is your Meeting Link`,
-      }
+        modelType: isPastDate ? 'invalid' : 'date',
+        modelMsg: isPastDate
+          ? 'Invalid date. Please select a future date.'
+          : `Meeting Scheduled Successfully! 
+            \n Join meeting on ${selectedDateObj.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          })}`,
+      },
     }));
   };
 
@@ -50,6 +77,7 @@ export default function Home({ setUserName }) {
     const isValidInput = /^[a-zA-Z\s]*$/.test(name);
     if (!isValidInput || name === '') {
       setAppState({
+        ...appState,
         loaderShow: false,
         model: {
           showModel: true,
@@ -59,6 +87,7 @@ export default function Home({ setUserName }) {
       });
     } else if (joinValue) {
       setAppState({
+        ...appState,
         loaderShow: false,
         model: {
           showModel: true,
@@ -141,57 +170,60 @@ export default function Home({ setUserName }) {
         <Model />
       )}
       {appState.calendar && appState.calendar.showCalendar && (
-        <div className="flex justify-center p-3">
+        <div className="transparent-background">
+        <div className="calendar from-top">
           <Calendar
             className='react-calendar'
             onChange={handleCalendarChange}
             value={appState.calendar.calendarDate || new Date()}
           />
+          <button className="text-[1.2rem] px-4 py-2 from-left w-full border-t hover:bg-stone-800 transition duration-300" onClick={handleCalendar}>Close</button>
+        </div>
         </div>
       )}
       <div className="home-page">
-        <Header handleCalendar={handleCalendar} />
+        <Header handleCalendar={handleCalendar} handleSettings={handleSettings} />
         <div className="home-body">
           <div className="left-side">
             <div className="lg:mr-10">
               <h2>Premium video meetings. Now free for everyone.</h2>
               <p className='mt-2'>
                 We re-engineered the service we built for secure business
-                meetings, WeXpert Meet, to make it free and available for all.
+                meetings, Xpert Meet, to make it free and available for all.
               </p>
-                <div className="input-block">
-                  <div className="input-section">
-                    <FontAwesomeIcon className="icon-block" icon={faKeyboard} />
-                    <input
-                      ref={inputRef}
-                      placeholder="Enter Name to Host"
-                    />
-                  </div>
-                  <button className="btn" onClick={handleNewMeeting}>
-                    <FontAwesomeIcon className="icon-block" icon={faVideo} />
-                    New Meeting
-                  </button>
+              <div className="input-block">
+                <div className="input-section">
+                  <FontAwesomeIcon className="icon-block" icon={faKeyboard} />
+                  <input
+                    ref={inputRef}
+                    placeholder="Enter Name to Host"
+                  />
                 </div>
-                <div className="input-block">
-                  <div className="input-section">
-                    <FontAwesomeIcon className="icon-block" icon={faKeyboard} />
-                    <input
-                      ref={joinRef}
-                      placeholder="Enter a code or link"
-                    />
-                  </div>
+                <button className="btn" onClick={handleNewMeeting}>
+                  <FontAwesomeIcon className="icon-block" icon={faVideo} />
+                  New Meeting
+                </button>
+              </div>
+              <div className="input-block">
+                <div className="input-section">
+                  <FontAwesomeIcon className="icon-block" icon={faKeyboard} />
+                  <input
+                    ref={joinRef}
+                    placeholder="Enter a code or link"
+                  />
+                </div>
                 <button className="btn" onClick={handleJoinClick}>
                   <FontAwesomeIcon className="icon-block" icon={faChain} />
                   Join Meeting
                 </button>
-                </div>
+              </div>
             </div>
             <div className="help-text">
-              <Link to="/">Learn more</Link> about WeXpert-Meet
+              <Link to="/">Learn more</Link> about Xpert-Meet
             </div>
           </div>
           <div className="right-side hidden lg:block">
-              <img src={process.env.PUBLIC_URL + '/assets/meetImg.jpg'} alt="Meet" />
+            <img src={process.env.PUBLIC_URL + '/assets/meetImg.jpg'} alt="Meet" />
           </div>
         </div>
       </div>

@@ -27,3 +27,9 @@
   opacity: 0;
   animation: fadeIn 1s infinite;
 }
+
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}

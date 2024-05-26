@@ -1,0 +1,101 @@
+.message-box {
+  width: 350px;
+  max-width: 500px;
+  max-height: 36.25rem;
+  background: #0a011c;
+  border: solid 1px white;
+  border-radius: 10px;
+  overflow-y: auto;
+  justify-content: space-between;
+}
+
+@media (max-width: 500px) {
+  .message-box {
+    width: 100%;
+  }
+}
+
+.msg-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #000;
+  margin: 0 0.8rem;
+}
+
+.msg-header h1 {
+  color: #fff;
+  font-size: 1.5rem;
+  font-family: "Finger Paint", cursive;
+  padding: 1rem 1rem 1rem 0;
+}
+
+#message-section {
+  height: 30rem;
+  max-height: 28rem;
+  overflow-y: auto;
+  scrollbar-color: black var(--thumbBG);
+}
+
+#message-section #them,
+#message-section #me {
+  display: flex;
+  position: relative;
+  bottom: 0;
+  min-height: 1.2rem;
+  background-color: rgb(63, 63, 70);
+  color: #fff;
+  border-radius: 0 1rem 1rem 1.2rem;
+  margin: 0.4rem 1.2rem 0rem;
+}
+
+#message-section .me {
+  font-weight: 500;
+  color: rgb(145, 14, 40);
+}
+#message-section .them{
+  font-weight: 500;
+  color: rgb(250, 204, 21);
+}
+
+#message-section #them {
+  float: left;
+  padding-left: 1.2rem;
+  padding: 0.45rem 1rem 0.6rem 1rem;
+}
+
+#message-section #me {
+  border-radius: 1rem 0rem 1rem 1.2rem;
+  background-color: #fff;
+  float: right;
+  padding: 0.45rem 1rem 0.6rem 1rem;
+  color: #000000;
+}
+
+#message-section .message {
+  line-height: 1.2rem;
+  clear: both;
+}
+
+.chat-footer {
+  padding: 0.4rem 0.8rem;
+}
+
+#input-section input {
+  background-color: rgb(63, 63, 70);
+  color: white;
+}
+
+.send {
+  cursor: pointer;
+  margin-left: 1em;
+}
+
+.send .circle {
+  position: relative;
+  width: 2.8rem;
+  height: 2.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

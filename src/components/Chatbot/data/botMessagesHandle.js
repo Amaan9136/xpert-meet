@@ -6,11 +6,6 @@ const userMessage = [
   /* 05 */["bye", "good bye", "take care"],
   /* 06 */["feedback", "report", "opinion","rating","thanks", "happy", "good", "fun", "wonderful", "fantastic", "cool", "very good", "awesome", "nice", "excellent"],
   /* 07 */["bad", "help", "bored", "tired", "not good", "feeling down", "feeling low", "i am sad", "sad"],
-  /* 08 */["Class fees", "fees" ,"amount"],
-  /* 09 */["schedule", "time", "Class time", "time table", "table", "week"],
-  /* 10 */["tomorrows","next class","next"],
-  /* 11 */["yesterdays"],
-  /* 12 */["holiday", "holidays"],
   // More questions can be added here
 ];
 
@@ -31,28 +26,6 @@ const botReply = [
     "Is there anything specific you'd like to talk about or any questions you have? 😊",
     "I'm here to provide a listening ear. Feel free to share as much or as little as you're comfortable with. 🤗"
   ],
-  /* 08 */[
-    "The fees are as follows:<br>Physics and Chemistry: Rs. 1000<br>Maths: Rs. 1200<br>Computer Science: Rs. 1100<br>English: Rs. 900<br>Biology: Rs. 1050"
-  ],
-  /* 09 */[
-    "Monday: 10:00 AM - Maths <br/> Tuesday: 09:30 AM - Physics <br/> Wednesday: 11:00 AM - Biology <br/> Thursday: 10:30 AM - Chemistry <br/> Friday: 09:00 AM - English <br/> Saturday: 08:30 AM - Computer Science <br/> Sunday: No classes scheduled"
-  ],
-  /* 10 */[
-    "Saturday: 09:00 AM - English",
-    "Saturday mornings are dedicated to English classes at 9 AM.",
-    "English sessions await you bright and early on Saturdays at 9 AM."
-  ],
-  /* 11 */[
-    "Thursday: 10:00 AM - Biology<br>",
-    "Thursday mornings, we delve into Biology at 10 AM.",
-    "Join us on Thursdays at 10 AM for an exciting exploration of Biology."
-  ],
-  /* 12 */[
-    "Absolutely! Christmas is around the corner. 🎄",
-    "Yes, Christmas is on its way! 🎅",
-    "Indeed! Christmas is approaching fast. 🌟",
-    "Absolutely, it's almost Christmas time! 🎁",
-  ],
   // More responses can be added here
 ];
 
@@ -65,15 +38,12 @@ if (botReply.length !== userMessage.length) {
 }
 
 const alternative = [
-  /* 1 */ "Can you ask something else. ❓",
-  /* 2 */ "Can you provide more context or ask a different question? 🧐",
-  /* 3 */ "I didn't quite catch that. Could you please rephrase your question? 🤔",
-  /* 4 */ "I'm not sure I understand. Can you provide more context or ask a different question? 🧐",
-  /* 5 */ "Hmm, that's a bit confusing. Could you try asking in a different way? 🤨",
-  /* 6 */ "Could you try asking in a different way? 🤨",
-  /* 7 */ "I'm here to help, but I need a clearer question to provide a meaningful answer. 🤷‍♂️",
-  /* 8 */ "It seems like we're on different wavelengths. Please try asking something else. 📡",
-  /* 9 */ "I apologize, but I couldn't grasp the meaning of your input. Please rephrase your question. 🙁",
+  /* 1 */ "I am trying to figure this out, please give some time",
+  /* 2 */ "I didn't catch that. I think once you end the call i can figure out the things properly 🧐",
+  /* 3 */ "I didn't catch that. Could you please rephrase your question? 🤔",
+  /* 4 */ "I'm not sure I understand. I think once you end the call i can figure out the things properly 🧐",
+  /* 5 */ "Hmm, that's a bit confusing. I think once you end the call i can figure out the things properly 🤨",
+  /* 6 */ "Could you try asking a different query? 🤨",
   // More alternatives can be added here
 ];
 

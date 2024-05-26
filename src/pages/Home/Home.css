@@ -31,18 +31,11 @@
 }
 
 .left-side .btn {
-  cursor: pointer;
-  padding: 14px 10px;
-  border-radius: 5px;
-  background-color: #19524b;
+  font-size: 1.2rem;
 }
 
 .left-side .btn .icon-block {
   padding-right: 10px;
-}
-
-.left-side .btn:hover {
-  box-shadow: 0 0 10px rgba(45, 216, 219, 0.5);
 }
 
 .left-side .input-section {
@@ -90,30 +83,31 @@
   box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302), 0 2px 6px 2px rgba(60, 64, 67, 0.149);
 }
 
-.react-calendar {
+.calendar {
   max-width: 400px;
-  background: #333333;
+  background-color: #333333;
   border: 1px solid #444444;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+  z-index: 10;
+}
+
+.react-calendar {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #ffffff;
+  text-align: center;
 }
 
 .react-calendar__navigation {
   background: #222222;
-  border-bottom: 1px solid #444444;
   padding: 12px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: right;
 }
 
 .react-calendar__navigation button {
-  background: none;
-  border: none;
   cursor: pointer;
-  outline: none;
   font-size: 1.5rem;
   font-weight: 500;
   color: #e8ebee;
@@ -128,25 +122,17 @@
   margin: 0 5px;
 }
 
-.react-calendar__navigation__label__labelText {
-  color: #ffffff;
-  font-size: 18px;
-  margin: 0 10px;
-}
-
 .react-calendar__month-view__weekdays {
   display: flex;
   justify-content: space-around;
   background-color: #222222;
   padding: 10px 0;
-  padding-left: 1rem;
   color: white;
 }
 
 .react-calendar__month-view__days {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 4px;
 }
 
 .react-calendar__month-view__days__day {
@@ -162,6 +148,12 @@
 
 .react-calendar__tile--active {
   background-color: #0056b3;
+}
+
+@media (max-width: 720px) {
+  .calendar{
+    width: 90%;
+  }
 }
 
 @media (max-width: 500px) {
@@ -187,7 +179,8 @@
   }
 
   .left-side .btn {
-    padding: 10px;
+    font-size: 1rem;
     margin: 5px 0;
   }
+
 }

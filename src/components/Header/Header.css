@@ -1,24 +1,20 @@
-/* Header.module.css */
-
 .header {
   display: flex;
   justify-content: space-between;
-  box-sizing: border-box;
 }
 
 .header .logo {
   display: flex;
   align-items: center;
-  width: 124px;
 }
 
-.header .logo .help-text {
-  padding-left: 4px;
+.head-icon{
+  transform-origin: 0px;
+  animation: rotateAnim 0.4s ease-in-out;
 }
 
-.icon-block {
-  font-size: 24px;
-  padding: 10px;
+.head-icon:hover .rotate{
+  animation: rotateAnim 0.4s ease-in-out;
 }
 
 @media (max-width: 767px) {

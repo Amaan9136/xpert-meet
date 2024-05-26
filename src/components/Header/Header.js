@@ -1,26 +1,26 @@
 // Header.jsx
 
-import React from 'react';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faQuestionCircle,
-  faExclamationCircle,
   faCalendarAlt,
+  faExclamationCircle,
+  faGear,
 } from "@fortawesome/free-solid-svg-icons";
-import styles from './Header.module.css';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from 'react';
+import './Header.css';
 
-export default function Header({ handleCalendar }) {
+export default function Header({ handleCalendar, handleSettings }) {
   return (
     <>
-      <div className={styles.header}>
-        <div className={styles.logo}>
-          <p className={`${styles.text3xl} text-3xl`}>WeXpert</p>
-          <span className={`${styles.helpText} mt-3`}>Meet</span>
+      <div className="header">
+        <div className="logo">
+          <p className='text-3xl'>WeXpert</p>
+          <span className='mt-3'>Meet</span>
         </div>
-        <div className={styles.actionBtn}>
-          <button><FontAwesomeIcon className={styles['icon-block']} icon={faQuestionCircle} /></button>
-          <button><FontAwesomeIcon className={styles['icon-block']} icon={faExclamationCircle} /></button>
-          <button onClick={handleCalendar}><FontAwesomeIcon className={styles['icon-block']} icon={faCalendarAlt} /></button>
+        <div>
+          <button className='head-icon'><FontAwesomeIcon  className='rotate text-[24px] p-[10px]' icon={faExclamationCircle} /></button>
+          <button className='head-icon' onClick={handleCalendar}><FontAwesomeIcon className='rotate text-[24px] p-[10px]' icon={faCalendarAlt} /></button>
+          <button className='head-icon' onClick={handleSettings}><FontAwesomeIcon className='rotate text-[24px] p-[10px]' icon={faGear} /></button>
         </div>
       </div>
     </>

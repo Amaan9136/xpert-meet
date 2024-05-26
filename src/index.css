@@ -41,12 +41,12 @@ code {
 
 @keyframes slideInFromTop {
   0% {
-    transform: translateY(-50%) translateZ(0);
+    transform: translateY(-50%);
     opacity: 0;
   }
 
   100% {
-    transform: translateY(0) translateZ(0);
+    transform: translateY(0);
     opacity: 1;
   }
 }
@@ -54,18 +54,17 @@ code {
 .from-top {
   align-items: center;
   justify-content: center;
-  animation: slideInFromTop 0.5s cubic-bezier(0.42, 0, 0.68, 1) forwards;
+  animation: slideInFromTop 0.5s ease forwards;
   backface-visibility: hidden;
 }
 
 @keyframes slideInFromLeft {
   0% {
-    transform: translateX(50%) translateZ(0);
+    transform: translateX(50%);
     opacity: 0;
   }
 
   100% {
-    transform: translateX(0) translateZ(0);
     opacity: 1;
   }
 }
@@ -90,4 +89,14 @@ code {
 .transition-opa {
   opacity: 0;
   animation: fadeIn 0.3s ease-in-out 0.3s forwards;
+}
+
+@keyframes rotateAnim {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }

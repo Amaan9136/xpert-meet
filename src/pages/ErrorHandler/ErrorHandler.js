@@ -26,10 +26,6 @@ export default class ErrorHandler extends Component {
       return (
         <>
           <p>{this.state.errorMessage === 'Unstable internet connection!' && 'Unstable internet connection!'}
-            {/* load app.js or some componet to handle above */}
-          </p>
-          <p>{this.state.errorMessage}
-            {/* above is to handle any kind of error */}
           </p>
         </>
       );

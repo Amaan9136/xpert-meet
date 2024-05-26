@@ -15,11 +15,15 @@ export const store = createStore(userReducer);
 const routes = [
   {
     path: "/",
-    component: React.lazy(() => import("./App")),
+    component: React.lazy(() => import("./App.js")),
   },
   {
     path: "/summary",
-    component: React.lazy(() => import("./pages/Summary/Summary")),
+    component: React.lazy(() => import("./pages/Summary/Summary.js")),
+  },
+  {
+    path: "/internet",
+    component: React.lazy(() => import("./pages/NoInternet/NoInternet.component.js")),
   },
 ];
 
@@ -40,8 +44,8 @@ const Root = () => (
 );
 
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
+const app = ReactDOM.createRoot(document.getElementById("app"));
+app.render(
   // <StrictMode>
     <Root />
   // </StrictMode> 

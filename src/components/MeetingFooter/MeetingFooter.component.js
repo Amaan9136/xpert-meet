@@ -1,27 +1,27 @@
-import React, { useEffect, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faMicrophone,
-  faVideo,
+  faAlignLeft,
+  faCamera,
+  faComments,
   faDesktop,
-  faVideoSlash,
-  faMicrophoneSlash,
+  faKey,
   faLink,
   faLinkSlash,
-  faAlignLeft,
-  faSlash,
-  faCamera,
-  faPhone,
-  faKey,
   faMessage,
+  faMicrophone,
+  faMicrophoneSlash,
+  faPhone,
+  faSlash,
+  faVideo,
+  faVideoSlash,
 } from "@fortawesome/free-solid-svg-icons";
-import { Tooltip as ReactTooltip } from 'react-tooltip';
-import "./MeetingFooter.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Model from "../Model/Model";
-import { useContext } from 'react';
+import { Tooltip as ReactTooltip } from 'react-tooltip';
 import { AppContext } from '../../AppContext';
-import { stopVideoRecording } from '../../server/http';
+import { onScreenshotClick, stopVideoRecording } from "../../server/http";
+import Model from "../Model/Model";
+import "./MeetingFooter.css";
 
 const MeetingFooter = (props) => {
   const { appState, setAppState } = useContext(AppContext);
@@ -34,7 +34,7 @@ const MeetingFooter = (props) => {
   });
 
   const handleEndCall = () => {
-    // stopVideoRecording();
+    stopVideoRecording();
     navigate('/summary');
   };
 
@@ -67,26 +67,6 @@ const MeetingFooter = (props) => {
         screen: isEnabled,
       };
     });
-  };
-
-  const onScreenshotClick = async () => {
-    try {
-      const response = await fetch('http://localhost:5000/screen-shot');
-      if (!response.ok) {
-        throw new Error(`Failed to capture screenshot: ${response.status} ${response.statusText}`);
-      }
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'screenshot.png';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      window.URL.revokeObjectURL(url);
-    } catch (error) {
-      console.error('Error capturing screenshot:', error.message);
-    }
   };
 
   function onKeyClick() {
@@ -163,10 +143,10 @@ const MeetingFooter = (props) => {
             icon={meetingState.meetingInfo ? faLink : faLinkSlash}
           />
         </div>
-        <div className={`meeting-icons ${appState.model.showModel&&appState.model.modelType==='keys' ? "" : "active"}`} onClick={onKeyClick}
+        <div className={`meeting-icons ${appState.model.showModel && appState.model.modelType === 'keys' ? "" : "active"}`} onClick={onKeyClick}
           title="Key Points">
-          {appState.model.showModel&&appState.model.modelType==='keys' ? (
-          <FontAwesomeIcon icon={faKey} />
+          {appState.model.showModel && appState.model.modelType === 'keys' ? (
+            <FontAwesomeIcon icon={faKey} />
           ) : (
             <>
               <FontAwesomeIcon
@@ -185,8 +165,6 @@ const MeetingFooter = (props) => {
           title="Transcription"
           onClick={() =>
             setMeetingState((prev) => ({
-              ...prev,
-              showChatbot: false,
               showTranscripts: !prev.showTranscripts,
             }))
           }
@@ -207,13 +185,35 @@ const MeetingFooter = (props) => {
           )}
         </div>
         <div
+          className={`meeting-icons ${meetingState.showMessage ? "" : "active"}`}
+          title="Message"
+          onClick={() => {
+            setMeetingState((prev) => ({
+              showMessage: !prev.showMessage,
+            }))
+          }}
+        >
+          {meetingState.showMessage ? (
+            <FontAwesomeIcon icon={faComments} />
+          ) : (
+            <>
+              <FontAwesomeIcon
+                icon={faSlash}
+                className="absolute mobile-hide"
+              />
+              <FontAwesomeIcon
+                icon={faComments}
+                className="relative"
+              />
+            </>
+          )}
+        </div>
+        <div
           className={`meeting-icons ${meetingState.showChatbot ? "" : "active"}`}
           title="Chatbot"
           onClick={() => {
             setMeetingState((prev) => ({
-              ...prev,
               showChatbot: !prev.showChatbot,
-              showTranscripts: false,
             }))
           }}
         >

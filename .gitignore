@@ -1,5 +1,5 @@
 /node_modules
-backend/gemini/.env
+/backend/gemini/.env
 /.pnp
 .pnp.js
 

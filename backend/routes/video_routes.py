@@ -83,6 +83,17 @@ def start_video_and_audio_recording(video_output_file, audio_output_file):
     audio_thread.join()
 
 
+@video_routes.route('/screen-shot', methods=['GET'])
+def screen_shot():
+    img = pyautogui.screenshot()
+    img_io = io.BytesIO()
+    img.save(img_io, 'PNG')
+    img_io.seek(0)
+    return Response(img_io.getvalue(), mimetype='image/png', headers={
+        'Content-Disposition': 'attachment;filename=screenshot.png'
+    })
+
+
 @video_routes.route('/start-record', methods=['GET'])
 def start_recording():
     global recording_started
@@ -93,6 +104,7 @@ def start_recording():
         return 'Video and Audio recording started'
     else:
         return 'Video and Audio recording is already in progress'
+
 
 @video_routes.route('/stop-record', methods=['GET'])
 def stop_recording():
@@ -110,30 +122,16 @@ def stop_recording():
         return 'No recording in progress'
 
 
-@video_routes.route('/screen-shot', methods=['GET'])
-def screen_shot():
-    img = pyautogui.screenshot()
-    img_io = io.BytesIO()
-    img.save(img_io, 'PNG')
-    img_io.seek(0)
-    return Response(img_io.getvalue(), mimetype='image/png', headers={
-        'Content-Disposition': 'attachment;filename=screenshot.png'
-    })
-
-
 @video_routes.route('/download-video', methods=['GET'])
 def download_video():
     try:
         video_path = 'backend/records/combinedRecords/output_combined.mp4'
         video_output_file = 'backend/records/videoRecords/output.mp4'
         audio_output_file = 'backend/records/audioRecords/output.wav'
-        # Check if audio and video combining is in progress
         while os.path.exists(video_output_file) or os.path.exists(audio_output_file):
-            time.sleep(1)  # Wait until combining is finished
-        # Check if the video and audio files exist
+            time.sleep(1)  
         if not os.path.exists(video_path):
             return 'Video file does not exist yet. Please try again later.', 404
-        # Proceed with the download
         with open(video_path, 'rb') as video_file:
             video_data = video_file.read()
         video_stream = io.BytesIO(video_data)
