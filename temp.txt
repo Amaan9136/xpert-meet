@@ -1,0 +1,28 @@
+participantsData.participants:
+{
+    "-NpA5IONwQ7q4Aj50MtR": {
+        "name": "dsadas",
+        "audio": true,
+        "screen": false,
+        "video": false,
+        "currentUser": true,
+        "avatarColor": "#b7ee80"
+    },
+    "-NpA5M0dvGGaMzBI5sPK": {
+        "name": "dsafa",
+        "audio": true,
+        "screen": false,
+        "video": false,
+        "peerConnection": {},
+        "avatarColor": "#9130e8"
+    }
+}
+
+
+1. run:  vercel 
+🔍  Inspect: https://vercel.com/amaan9136s-projects/react-video-meet/CXzFAecWqGTHyKUWKudcoQqzasQv [1s]
+✅  Preview: https://react-video-meet-o0umqax5x-amaan9136s-projects.vercel.app [1s]
+📝  To deploy to production (react-video-meet.vercel.app), run `vercel --prod
+2. run:  vercel --prod`
+
+

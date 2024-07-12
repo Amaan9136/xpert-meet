@@ -1,0 +1,51 @@
+.meeting-footer {
+  background: #0a011c;
+  display: flex;
+  justify-content: center;
+  padding: 9px;
+}
+
+.meeting-icons {
+  color: white;
+  border-radius: 50%;
+  background: #202124;
+  min-width: 40px;
+  min-height: 40px;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.active {
+  background-color: #ea4335;
+}
+
+div[disabled] {
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+@media (max-width: 550px) {
+  .mobile-hide{
+    display: none;
+  }
+
+  .meeting-footer {
+    justify-content: start;
+    overflow-x: scroll;
+  }
+
+  .meeting-icons {
+    margin: 10px;
+  }
+}
+
+@media (min-width: 500px) and (max-width: 1200px) {
+  /* */
+}
+
+@media (min-width: 768px) {
+  /* Desktop styles */
+}
