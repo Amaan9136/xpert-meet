@@ -21,11 +21,6 @@ GPTs are a type of LLM's with nicely trained for any response.
 
 // large-language-model , neural-network (ANN) & Generative Pre-trained Transformers 
 
-// future enhance: upload notes into firebase and download it in client
-// future enhance: timetable na dynamic upload using setting
-// future enhance: student details na dynamic upload using setting
-// future enhance: emended google auth
-// https://youtu.be/HtJKUQXmtok?si=L4mA29MZJ5ko6Hvh google0auth
 
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
