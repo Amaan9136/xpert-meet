@@ -1,12 +1,12 @@
-# video-call-using-ai
+# xpert-meet
 
 <p align="center"> 
-  <h3 align="center">WeXpert Meet </h3>
+  <h3 align="center">Xpert Meet </h3>
 
   <p align="center">
     video-call-using-ai!
     <br />  
-     A Video Conference App - WeXpert Meet
+     A Video Conference App - Xpert Meet
     <br />
   </p>
 </p>
@@ -55,7 +55,7 @@ npm install --save firebase
 
 ## Demo
 
-- The App can support upto 8-12 users without having any UI alignment issues
+- The App can support upto 8-12 users without having any UI alignment issues and also can add upto 100 members but has a little UI issues after it reaches 18. soon will be fixing that. and if you are intrested then contact me using below infos provided
 
 - Desktop View
   ![](screenshots/Desktop%20View.jpg)
@@ -74,4 +74,4 @@ npm install --save firebase
 
 Instagram - [@Instagram](https://www.instagram.com/amaan.m.k/) - syedkhalander66@gmail.com 
 
-Project Link: [https://github.com/Amaan9136/video-call-using-ai](https://github.com/Amaan9136/xpert-meet)
+Project Link: [https://github.com/Amaan9136/xpert-meet](https://github.com/Amaan9136/xpert-meet)
