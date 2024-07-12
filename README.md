@@ -57,16 +57,23 @@ npm install --save firebase
 
 - The App can support upto 8-12 users without having any UI alignment issues and also can add upto 100 members but has a little UI issues after it reaches 18. soon will be fixing that. and if you are intrested then contact me using below infos provided
 
-- Desktop View
-  ![](screenshots/Desktop%20View.jpg)
+Responsive View
+![image](https://github.com/user-attachments/assets/d392e025-a514-4751-9d67-6b47529a4a28)
 
-- Desktop Sharing View
-  ![](screenshots/Screenshare.jpg)
+Home Page
+![image](https://github.com/user-attachments/assets/4f1c6dc1-17ae-4381-8f67-2a4e36a430df)
 
-- Mobile View
-  <br />
+Realtime Messaging
+![image](https://github.com/user-attachments/assets/020b049b-b0f9-4b8c-af88-63ad1e07b75f)
 
-![](screenshots/Mobile%20View.jpg)
+Auto Transcription 
+![image](https://github.com/user-attachments/assets/78ec8066-4ba2-477d-9edd-7e46bca6f923)
+
+Chatbot interactions
+![image](https://github.com/user-attachments/assets/24255fc2-307c-414d-bc31-474dbe2f8096)
+
+Summary Page
+![image](https://github.com/user-attachments/assets/eab816b3-557a-407b-a53b-c99d74447c4b)
 
 <!-- CONTACT -->
 
