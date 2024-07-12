@@ -1,0 +1,26 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header .logo {
+  display: flex;
+  align-items: center;
+}
+
+.head-icon{
+  transform-origin: 0px;
+  animation: rotateAnim 0.4s ease-in-out;
+}
+
+.head-icon:hover .rotate{
+  animation: rotateAnim 0.4s ease-in-out;
+}
+
+@media (max-width: 767px) {
+  /* Mobile styles */
+}
+
+@media (min-width: 768px) {
+  /* Desktop styles */
+}
