@@ -1,10 +1,13 @@
-.main-screen {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
+.main-screen{
+    width: 100%;
+    height: 90vh;
+    background: #3c4043;
 }
 
-.meet-body{
-    display: flex;
-    flex: 1;
+.wrapper{
+    width: 100%;
+}
+
+.footer{
+    height: 10vh;
 }

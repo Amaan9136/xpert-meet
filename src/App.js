@@ -1,48 +1,104 @@
-// ai plugins for real time transcription 
-// can join the meeting in the end and save clients time by providing summary
-// can upload dynamic timetables
+import MainScreen from "./components/MainScreen/MainScreen.component";
+import firepadRef, { db, userName } from "./server/firebase";
+import "./App.css";
+import { useEffect } from "react";
+import {
+  setMainStream,
+  addParticipant,
+  setUser,
+  removeParticipant,
+  updateParticipant,
+} from "./store/actioncreator";
+import { connect } from "react-redux";
 
-/*
-The Breakdown:
+function App(props) {
+  const getUserStream = async () => {
+    const localStream = await navigator.mediaDevices.getUserMedia({
+      audio: true,
+      video: true,
+    });
 
-1. Neural Networks (ANN): This is the foundational building block. It's a computational model inspired by the human brain, 
-designed to recognize patterns. ANNs are the backbone for many AI applications, including language models.
-2. Large Language Models (LLM): These are a specific type of neural network designed to process and generate human language. 
-They are trained on vast amounts of text data and can perform tasks like translation, summarization, question answering, and more.
-3. Generative Pre-trained Transformers (GPT): This is a specific architecture of LLMs that has become highly successful. 
-GPT models use a transformer architecture, which is particularly effective at processing sequential data like text. 
-They are pre-trained on massive datasets and can be fine-tuned for specific tasks.
+    return localStream;
+  };
+  useEffect(async () => {
+    const stream = await getUserStream();
+    stream.getVideoTracks()[0].enabled = false;
+    props.setMainStream(stream);
 
-To Summarize:
-All LLMs are neural networks.
-Not all neural networks are LLMs.
-GPTs are a type of LLM's with nicely trained for any response.
-*/
+    connectedRef.on("value", (snap) => {
+      if (snap.val()) {
+        const defaultPreference = {
+          audio: true,
+          video: false,
+          screen: false,
+        };
+        const userStatusRef = participantRef.push({
+          userName,
+          preferences: defaultPreference,
+        });
+        props.setUser({
+          [userStatusRef.key]: { name: userName, ...defaultPreference },
+        });
+        userStatusRef.onDisconnect().remove();
+      }
+    });
+  }, []);
 
-// large-language-model , neural-network (ANN) & Generative Pre-trained Transformers 
+  const connectedRef = db.database().ref(".info/connected");
+  const participantRef = firepadRef.child("participants");
 
+  const isUserSet = !!props.user;
+  const isStreamSet = !!props.stream;
 
-import React, { useState } from 'react';
-import { useNavigate } from "react-router-dom";
-import Home from './pages/Home/Home';
-import Meet from './pages/Meet/Meet';
-import { checkInternetConnection } from "./server/http";
-
-export default function App() {
-  const [userName, setUserName] = useState(null);
-
-  const navigate = useNavigate();
-  if (checkInternetConnection()) {
-    navigate('/internet');
-  }
+  useEffect(() => {
+    if (isStreamSet && isUserSet) {
+      participantRef.on("child_added", (snap) => {
+        const preferenceUpdateEvent = participantRef
+          .child(snap.key)
+          .child("preferences");
+        preferenceUpdateEvent.on("child_changed", (preferenceSnap) => {
+          props.updateParticipant({
+            [snap.key]: {
+              [preferenceSnap.key]: preferenceSnap.val(),
+            },
+          });
+        });
+        const { userName: name, preferences = {} } = snap.val();
+        props.addParticipant({
+          [snap.key]: {
+            name,
+            ...preferences,
+          },
+        });
+      });
+      participantRef.on("child_removed", (snap) => {
+        props.removeParticipant(snap.key);
+      });
+    }
+  }, [isStreamSet, isUserSet]);
 
   return (
-    <>
-      {userName ? (
-        <Meet name={userName} />
-      ) : (
-        <Home setUserName={setUserName} />
-      )}
-    </>
+    <div className="App">
+      <MainScreen />
+    </div>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    stream: state.mainStream,
+    user: state.currentUser,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setMainStream: (stream) => dispatch(setMainStream(stream)),
+    addParticipant: (user) => dispatch(addParticipant(user)),
+    setUser: (user) => dispatch(setUser(user)),
+    removeParticipant: (userId) => dispatch(removeParticipant(userId)),
+    updateParticipant: (user) => dispatch(updateParticipant(user)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
