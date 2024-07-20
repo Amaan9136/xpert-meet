@@ -55,18 +55,9 @@ npm install --save firebase
 
 ## Demo
 
-- The App can support upto 8-12 users without having any UI alignment issues
-
-- Desktop View
-  ![](screenshots/Desktop%20View.jpg)
-
-- Desktop Sharing View
-  ![](screenshots/Screenshare.jpg)
-
-- Mobile View
-  <br />
-
-![](screenshots/Mobile%20View.jpg)
+- The App can support upto 18 users without having any UI alignment issues and supports many with a little UI issues
+👇👇👇👇DEMO LINK👇👇👇👇
+https://xpert-video-meet.vercel.app/
 
 <!-- CONTACT -->
 
