@@ -26,25 +26,39 @@
 ## Usage
 <!-- install dependencies -->
 # FontAwesome
+```bash
 npm install --save @fortawesome/react-fontawesome @fortawesome/free-solid-svg-icons
+```
 
 # XLSX for Excel file handling
+```bash
 npm install --save xlsx
+```
 
 # React Router
+```bash
 npm install --save react-router-dom
+```
 
 # React Redux
+```bash
 npm install --save react-redux redux
+```
 
 # React Tooltip
+```bash
 npm install --save react-tooltip
+```
 
 # React Calendar
+```bash
 npm install --save react-calendar
+```
 
 # Firebase
+```bash
 npm install --save firebase
+```
 
 <!-- run below commands -->
 - Run npm install.
@@ -65,4 +79,4 @@ https://xpert-video-meet.vercel.app/
 
 Instagram - [@Instagram](https://www.instagram.com/amaan.m.k/) - syedkhalander66@gmail.com 
 
-Project Link: [https://github.com/Amaan9136/video-call-using-ai](https://github.com/Amaan9136/video-call-using-ai)
+Project Link: [https://github.com/Amaan9136/xpert-meet](https://github.com/Amaan9136/xpert-meet)
