@@ -1,12 +1,12 @@
-# video-call-using-ai
+# xpert-meet
 
 <p align="center"> 
   <h3 align="center">WeXpert Meet </h3>
 
   <p align="center">
-    video-call-using-ai!
+    xpert-meet
     <br />  
-     A Video Conference App - WeXpert Meet
+     A Video Conference App with AI Plugins- WeXpert Meet
     <br />
   </p>
 </p>
