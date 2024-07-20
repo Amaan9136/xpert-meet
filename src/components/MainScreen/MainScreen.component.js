@@ -1,22 +1,13 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useEffect } from "react";
+import MeetingFooter from "../MeetingFooter/MeetingFooter.component";
+import Participants from "../Participants/Participants.component";
+import "./MainScreen.css";
 import { connect } from "react-redux";
 import { setMainStream, updateUser } from "../../store/actioncreator";
-import Chatbot from "../Chatbot/Chatbot";
-import MeetingFooter from "../MeetingFooter/MeetingFooter.component";
-import MeetingInfo from "../MeetingInfo/MeetingInfo";
-import MessageBox from '../MessageBox/MessageBox';
-import Participants from "../Participants/Participants.component";
-import Transcription from "../Transcription/Transcription";
-import "./MainScreen.css";
 
 const MainScreen = (props) => {
   const participantRef = useRef(props.participants);
-  const [meetingState, setMeetingState] = useState({
-    meetingInfo: false,
-    showTranscripts: window.innerWidth >= 768, 
-    showChatbot: false,
-    showMessage: false,
-  });
+
   const onMicClick = (micEnabled) => {
     if (props.stream) {
       props.stream.getAudioTracks()[0].enabled = micEnabled;
@@ -51,6 +42,7 @@ const MainScreen = (props) => {
       audio: true,
       video: true,
     });
+
     localStream.getVideoTracks()[0].enabled = Object.values(
       props.currentUser
     )[0].video;
@@ -75,28 +67,24 @@ const MainScreen = (props) => {
     }
 
     mediaStream.getVideoTracks()[0].onended = onScreenShareEnd;
+
     updateStream(mediaStream);
+
     props.updateUser({ screen: true });
   };
-
   return (
-    <div className="main-screen">
-      <div className="meet-body">
-        <div className="flex-1">
-        {window.innerWidth <= 500 && (meetingState.showTranscripts || meetingState.showChatbot || meetingState.showMessage) ? null : <Participants />}
-        </div> 
-        {meetingState.meetingInfo && <MeetingInfo setMeetingState={setMeetingState} name={props.name} />}
-        {meetingState.showTranscripts && <Transcription setMeetingState={setMeetingState} />}
-        {meetingState.showChatbot && <div className="from-left mx-2 my-3"><Chatbot /></div>}
-        {meetingState.showMessage && <MessageBox setMeetingState={setMeetingState} username={props.name}/>}
+    <div className="wrapper">
+      <div className="main-screen">
+        <Participants />
       </div>
+
+      <div className="footer">
         <MeetingFooter
           onScreenClick={onScreenClick}
           onMicClick={onMicClick}
           onVideoClick={onVideoClick}
-          meetingState={meetingState}
-          setMeetingState={setMeetingState}
         />
+      </div>
     </div>
   );
 };
