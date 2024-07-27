@@ -78,6 +78,14 @@ DEMO LINK
 https://xpert-video-meet.vercel.app/
 👆👆👆👆
 
+
+<h3>Snapshots</h3>
+
+<h4>Home</h4>
+<img src="screenshots/" width="400px" height="200px">
+<h4>Messenger</h4>
+<h4>Screen Recording</h4>
+
 <!-- CONTACT -->
 
 ## Contact
