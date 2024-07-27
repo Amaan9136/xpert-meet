@@ -3,9 +3,6 @@
 <p align="center"> 
   <h3 align="center">WeXpert Meet </h3>
 
-  <h3>Open Presentation Link of this project ->>></h3>
-  <a href="https://www.canva.com/design/DAGMC-wVS6Q/T7J-0ljiLsPT_Ya-FWZNhw/view?utm_content=DAGMC-wVS6Q&utm_campaign=designshare&utm_medium=link&utm_source=editor">Open Presentation Link</a>
-
   <p align="center">
     xpert-meet
     <br />  
@@ -77,14 +74,6 @@ npm install --save firebase
 DEMO LINK
 https://xpert-video-meet.vercel.app/
 👆👆👆👆
-
-
-<h3>Snapshots</h3>
-
-<h4>Home</h4>
-<img src="screenshots/" width="400px" height="200px">
-<h4>Messenger</h4>
-<h4>Screen Recording</h4>
 
 <!-- CONTACT -->
 
