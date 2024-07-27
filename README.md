@@ -47,7 +47,6 @@
 - Generate quizzes and assessments
 - Interactive whiteboard for teaching
 - Student participation tracking
-- Real-time polling
 ## Exam
 - Detect copied content and plagiarism
 - Monitor students during exams with proctoring features
