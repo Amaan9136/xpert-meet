@@ -1,0 +1,35 @@
+.messenger-container {
+  width: 320px;
+  max-width: 500px;
+  max-height: 36.25rem;
+  background: #0a011c;
+  border: solid 1px white; 
+  overflow-y: auto;
+  box-sizing: border-box;
+  border-radius: 10px;
+  justify-content: space-between;
+}
+
+.messenger-header h1 {
+  color: #fff;
+  font-size: 1.5rem;
+  font-family: "Finger Paint", cursive;
+}
+
+.messenger-container .messenger-header {
+  padding: 12px 12px 6px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 400;
+}
+
+.messenger-container::-webkit-scrollbar {
+  display: none;
+}
+
+@media (max-width: 500px) {
+  .messenger-container {
+    width: 100%;
+  }
+}
