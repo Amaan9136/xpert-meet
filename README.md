@@ -8,17 +8,18 @@
   </p>
 </p>
 
-## Description
-<p>WeXpert is a versatile video conferencing web application designed to cater to different user needs with specialized modes: Office Mode, Class Mode, and Exam Mode. Built using Node.js, React, Firebase, and Tailwind CSS, WeXpert offers a seamless and interactive experience for various scenarios.
+## Abstract
+<p>WeXpert Meet provides features like real-time transcription, automatic summary generation, noise cancellation, a chatbot for meeting interaction, and the ability to send the generated video call summary through email to participants in single button.
 </p>
 
 <!-- TABLE OF CONTENTS -->
 
 ## Table of Contents
-- [Technologies Used](#technology)
-- [How To Run](#usage)
-- [ScreenShots](#demo)
-- [Contact](#contact)
+- Features
+- Usage
+- Technology Stack
+- Installation
+- Demo
 
 <!-- tutorial -->
 # Features
