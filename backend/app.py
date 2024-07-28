@@ -7,7 +7,9 @@ app = Flask(__name__)
 
 CORS(app)
 from routes.files_routes import files_routes
+from routes.video_routes import video_routes
 
+app.register_blueprint(video_routes)
 app.register_blueprint(files_routes)
 
 @app.route('/')
