@@ -9,8 +9,8 @@
 </p>
 
 ## Abstract
-<p>WeXpert Meet provides features like real-time transcription, automatic summary generation, noise cancellation, a chatbot for meeting interaction, and the ability to send the generated video call summary through email to participants in single button.
-</p>
+<b>WeXpert Meet provides features like real-time transcription, automatic summary generation, noise cancellation, a chatbot for meeting interaction, and the ability to send the generated video call summary through email to participants in single button.
+</b>
 
 <!-- TABLE OF CONTENTS -->
 
