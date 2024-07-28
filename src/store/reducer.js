@@ -131,7 +131,7 @@ const addConnection = (newUser, currentUser, stream) => {
   });
   const newUserId = Object.keys(newUser)[0];
   const currentUserId = Object.keys(currentUser)[0];
- 
+
   const offerIds = [newUserId, currentUserId].sort((a, b) =>
     a.localeCompare(b)
   );

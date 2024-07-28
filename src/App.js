@@ -12,6 +12,7 @@ They are trained on vast amounts of text data and can perform tasks like transla
 3. Generative Pre-trained Transformers (GPT): This is a specific architecture of LLMs that has become highly successful. 
 GPT models use a transformer architecture, which is particularly effective at processing sequential data like text. 
 They are pre-trained on massive datasets and can be fine-tuned for specific tasks.
+4. Transformers are the neural network model which converts INPUT SEQUENCE to OUTPUT SEQUENCE
 
 To Summarize:
 All LLMs are neural networks.

@@ -1,95 +1,64 @@
-<h1 align="center">WeXpert-meet</h1> 
+# xpert-meet
 
 <p align="center"> 
- <img src="screenshots/logo.jpg" height="600px" width="1000">
+  <h3 align="center">WeXpert Meet </h3>
+
+  <h3>Open Presentation Link of this project ->>></h3>
+  <a href="https://www.canva.com/design/DAGMC-wVS6Q/T7J-0ljiLsPT_Ya-FWZNhw/view?utm_content=DAGMC-wVS6Q&utm_campaign=designshare&utm_medium=link&utm_source=editor">Open Presentation Link</a>
 
   <p align="center">
-    A Video Conference App with AI Plugins- WeXpert Meet
+    xpert-meet
+    <br />  
+     A Video Conference App with AI Plugins- WeXpert Meet
+    <br />
   </p>
-</p>
-
-## Description
-<p>WeXpert is a versatile video conferencing web application designed to cater to different user needs with specialized modes: Office Mode, Class Mode, and Exam Mode. Built using Node.js, React, Firebase, and Tailwind CSS, WeXpert offers a seamless and interactive experience for various scenarios.
 </p>
 
 <!-- TABLE OF CONTENTS -->
 
 ## Table of Contents
-- [Technologies Used](#technology)
+
 - [How To Run](#usage)
 - [ScreenShots](#demo)
 - [Contact](#contact)
 
 <!-- tutorial -->
-# Features
-## Office Mode
-- Generate key points from meetings
-- Share screens and documents
-- Collaborative whiteboard
-## Class Mode
-- Generate quizzes and assessments
-- Interactive whiteboard for teaching
-- Student participation tracking
-- Real-time polling
-## Exam Mode
-- Detect copied content and plagiarism
-- Monitor students during exams with proctoring features
-- Timer and submission management
-
 
 <!-- Prerequisites -->
-# Usage
-## Office Mode
-- Select "Office Mode" from the main menu.
-- Start or join a meeting.
-- Use the key points generator to summarize the meeting.
-## Class Mode
-- Generate quizzes and assessments
-- Interactive whiteboard for teaching
-- Student participation tracking
-## Exam
-- Detect copied content and plagiarism
-- Monitor students during exams with proctoring features
-- Timer and submission management
 
-# Technology Stack
-- **Frontend:** React, Tailwind CSS
-- **Backend:** Node.js, Python 
-- **Database:** Firebase
-- **Real-time Communication:** WebRTC (for video conferencing)
-# Installation 
+## Usage
 <!-- install dependencies -->
-## FontAwesome
+# FontAwesome
 ```bash
 npm install --save @fortawesome/react-fontawesome @fortawesome/free-solid-svg-icons
 ```
 
-## XLSX for Excel file handling
+# XLSX for Excel file handling
 ```bash
 npm install --save xlsx
 ```
 
-## React Router
+# React Router
 ```bash
 npm install --save react-router-dom
 ```
 
-## React Redux
+# React Redux
 ```bash
 npm install --save react-redux redux
 ```
 
-## React Tooltip
+# React Tooltip
 ```bash
 npm install --save react-tooltip
 ```
 
-## React Calendar
+# React Calendar
 ```bash
 npm install --save react-calendar
 ```
 
-## Firebase
+# Firebase
 ```bash
 npm install --save firebase
 ```
@@ -108,6 +77,14 @@ npm install --save firebase
 DEMO LINK
 https://xpert-video-meet.vercel.app/
 👆👆👆👆
+
+
+<h3>Snapshots</h3>
+
+<h4>Home</h4>
+<img src="screenshots/" width="400px" height="200px">
+<h4>Messenger</h4>
+<h4>Screen Recording</h4>
 
 <!-- CONTACT -->
 

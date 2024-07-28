@@ -4,6 +4,10 @@ const storedAppData = JSON.parse(localStorage.getItem("appData"));
 export const AppContext = createContext({
   appState: {},
   setAppState: () => { },
+  appData: {},
+  setAppData: () => { },
+  participantsData: {},
+  setParticipantsData: () => { },
 });
 
 export default function AppContextProvider({ children }) {
@@ -21,7 +25,8 @@ export default function AppContextProvider({ children }) {
     transcriptionMsg: '',
     keyPoints: [],
     meetMode: 'Casual',
-    profileColor: profileColor
+    profileColor: profileColor,
+    notesLists: [],
   });
 
   const [appState, setAppState] = useState({
