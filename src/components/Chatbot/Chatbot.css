@@ -1,0 +1,159 @@
+.chatbot {
+  width: 350px;
+  max-width: 500px;
+  max-height: 36rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #0a011c;
+  border: solid 1px white; 
+  border-radius: 10px;
+  font-size: 1rem;
+}
+
+@media (max-width: 500px) {
+  .chatbot {
+    width: 100%;
+  }
+}
+
+.chatbot #botheader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #000;
+  margin: 0 0.8rem;
+}
+
+.chatbot #botheader h1 {
+  color: #fff;
+  font-size: 1.5rem;
+  font-family: "Finger Paint", cursive;
+  padding: 1rem 1rem 1rem 0;
+}
+
+.chatbot #message-section {
+  height: 30rem;
+  max-height: 28rem;
+  overflow-y: auto;
+}
+
+.chatbot #message-section::-webkit-scrollbar-track {
+  background-color: rgb(0, 0, 0);
+}
+
+.chatbot #message-section #bot,
+.chatbot #message-section #user {
+  display: flex;
+  position: relative;
+  bottom: 0;
+  min-height: 1.2rem;
+  background-color: rgb(63, 63, 70);
+  color: #fff;
+  border-radius: 0 1rem 1rem 1.2rem;
+  margin: 0.4rem 1.2rem 0rem;
+}
+
+.chatbot #message-section #bot {
+  float: left;
+  padding-left: 1.2rem;
+  padding: 0.4rem 1rem 0.6rem 1rem;
+}
+
+.chatbot #message-section #user {
+  border-radius: 1rem 0rem 1rem 1.2rem;
+  background-color: #fff;
+  float: right;
+  padding: 0.4rem 1rem 0.6rem 1rem;
+  color: #000000;
+}
+
+.chatbot #message-section .message {
+  color: #000;
+  clear: both;
+  line-height: 1.2rem;
+  padding: 8px;
+  position: relative;
+  margin: 8px 0;
+  max-width: 85%;
+  word-wrap: break-word;
+  z-index: 2;
+}
+
+.chat-footer{
+  padding: 0.8rem;
+  padding-top: 0.1rem;
+}
+
+.chatbot #input-section input{
+  background-color: rgb(63, 63, 70);
+  color: white;
+}
+
+.chatbot .send {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  flex: 0 0 auto;
+  margin-left: 1em;
+  margin-right: 0;
+  padding: 0;
+  position: relative;
+  outline: none;
+}
+
+.circle:hover,
+.circle:active {
+  opacity: 0.7;
+}
+
+.chatbot .send .circle {
+  position: relative;
+  width: 2.8rem;
+  height: 2.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circle {
+  background-color: rgb(57, 57, 150);
+  border-radius: 10px;
+  color: #fff;
+}
+
+input:focus, .circle:focus, .send:focus , button:focus {
+  border: 1px solid white !important;
+  outline: none; 
+  border-radius: 10px;
+}
+
+.allquickbtn{
+  margin: 0.2rem;
+}
+
+.quickmessage {
+  background-color: rgb(57, 57, 150);
+  color: #ffffff;
+  border-radius: 10px;
+  padding: 0.2rem 0.4rem 0.2rem 0.4rem;
+  margin: 0.13rem;
+}
+
+.typing-animation {
+  animation: typing 0.5s ease-in-out infinite;
+}
+
+.bot-table th, .bot-table td {
+  padding: 2px;
+  border: 1px solid white;
+}
+
+@keyframes typing {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
