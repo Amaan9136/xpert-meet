@@ -1,4 +1,3 @@
-import { SyncLoader } from 'react-spinners';
 
 const Loader = ({ message = "Loading..." }) => (
   <>
@@ -9,4 +8,3 @@ const Loader = ({ message = "Loading..." }) => (
   </>
 );
 
-export default Loader;

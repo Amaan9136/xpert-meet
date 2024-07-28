@@ -1,6 +1,4 @@
 import { createContext, useRef, useState } from 'react';
-const storedAppData = JSON.parse(localStorage.getItem("appData"));
-
 export const AppContext = createContext({
   appState: {},
   setAppState: () => { },
@@ -44,15 +42,6 @@ export default function AppContextProvider({ children }) {
     },
   });
 
-  const AppContextValues = {
-    userKey: userKeyRef.current,
-    appState,
-    setAppState,
-    participantsData,
-    setParticipantsData,
-    appData,
-    setAppData
-  };
 
   return (
     <AppContext.Provider value={AppContextValues}>
