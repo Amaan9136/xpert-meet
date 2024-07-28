@@ -88,6 +88,10 @@ npm install --save react-tooltip
 ```bash
 npm install --save react-calendar
 ```
+## Google Authentication Key
+```bash
+npm install react-google-login
+```
 
 ## Firebase
 ```bash
