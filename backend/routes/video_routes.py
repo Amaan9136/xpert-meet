@@ -25,8 +25,20 @@ def start_video_recording(output_file):
     global recording_started
     screen_width, screen_height = pyautogui.size()
     fourcc = cv2.VideoWriter_fourcc(*'mp4v')
-    cv2.VideoWriter(output_file, fourcc, 20.0, (screen_width, screen_height))
+    out = cv2.VideoWriter(output_file, fourcc, 20.0, (screen_width, screen_height))
     
+    try:
+        while recording_started:
+            img = pyautogui.screenshot()
+            frame = np.array(img)
+            frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
+            out.write(frame)
+            time.sleep(0.01) # reduce this if app tries to crash
+    except Exception as e:
+        print(f"Error during video recording: {e}")
+    finally:
+        out.release()
+
 # Function to start audio recording
 def start_audio_recording(output_file):
     CHUNK = 1024
@@ -54,6 +66,63 @@ def start_audio_recording(output_file):
         wf.setframerate(RATE)
         wf.writeframes(b''.join(frames))
         wf.close()
+
+# Function to start video and audio recording
+def start_video_and_audio_recording(video_output_file, audio_output_file):
+    global recording_started
+    recording_started = True
+
+    video_thread = threading.Thread(target=start_video_recording, args=(video_output_file,))
+    audio_thread = threading.Thread(target=start_audio_recording, args=(audio_output_file,))
+
+    video_thread.start()
+    audio_thread.start()
+
+    video_thread.join()
+    recording_started = False
+    audio_thread.join()
+
+
+@video_routes.route('/screen-shot', methods=['GET'])
+def screen_shot():
+    img = pyautogui.screenshot()
+    img_io = io.BytesIO()
+    img.save(img_io, 'PNG')
+    img_io.seek(0)
+    return Response(img_io.getvalue(), mimetype='image/png', headers={
+        'Content-Disposition': 'attachment;filename=screenshot.png'
+    })
+
+
+@video_routes.route('/start-record', methods=['GET'])
+def start_recording():
+    global recording_started
+    if not recording_started:
+        video_output_file = 'backend/records/videoRecords/output.mp4'
+        audio_output_file = 'backend/records/audioRecords/output.wav'
+        threading.Thread(target=start_video_and_audio_recording, args=(video_output_file, audio_output_file)).start()
+        return 'Video and Audio recording started'
+    else:
+        return 'Video and Audio recording is already in progress'
+
+
+@video_routes.route('/stop-record', methods=['GET'])
+def stop_recording():
+    global recording_started
+    if recording_started:
+        recording_started = False
+        video_output_file = 'backend/records/videoRecords/output.mp4'
+        audio_output_file = 'backend/records/audioRecords/output.wav'
+        output_combined_file = 'backend/records/combinedRecords/output_combined.mp4'
+        combine_audio_video(video_output_file, audio_output_file, output_combined_file)
+        
+        # remove folders after call has been ended
+        os.remove(video_output_file)
+        os.remove(audio_output_file) 
+        
+        return 'Video and Audio recording stopped and saved'
+    else:
+        return 'No recording in progress'
 
 
 @video_routes.route('/download-video', methods=['GET'])
