@@ -58,6 +58,7 @@
 - **Backend:** Node.js, Python 
 - **Database:** Firebase
 - **Real-time Communication:** WebRTC (for video conferencing)
+- The App can support upto 18 users without having any UI alignment issues and supports many with a little UI issues
 # Installation 
 <!-- install dependencies -->
 ## FontAwesome
@@ -113,9 +114,10 @@ npm install --save firebase
 <video src="screenshots/xpert-record.mp4" controls>
 </video>
 
-- The App can support upto 18 users without having any UI alignment issues and supports many with a little UI issues
+
 👇👇👇👇
-DEMO LINK
+### Demo Link
+
 https://xpert-video-meet.vercel.app/
 👆👆👆👆
 
