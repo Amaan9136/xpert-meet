@@ -109,16 +109,20 @@ npm install --save firebase
 
 ## Demo
 
-### Demo Video
+### Demo Video Link
+https://drive.google.com/file/d/1ab_xpvM2uC3r7pI69L5MSFAgyZT1fw1Q/view
+<br/>
+👆👆👆👆
 
-<video src="screenshots/xpert-record.mp4" controls>
-</video>
+### Demo Presentation Link
+https://www.canva.com/design/DAGHdsTabMw/t4ZVZM6K-1Rvpby1GuCpXA/view?utm_content=DAGHdsTabMw&utm_campaign=designshare&utm_medium=link&utm_source=editor
+<br/>
+👆👆👆👆
 
-
-👇👇👇👇
-### Demo Link
+### Demo Webpage Link
 
 https://xpert-video-meet.vercel.app/
+<br/>
 👆👆👆👆
 
 <!-- CONTACT -->
