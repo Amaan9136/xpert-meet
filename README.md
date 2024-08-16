@@ -1,5 +1,4 @@
 <h1 align="center">WeXpert-meet</h1> 
-
 <p align="center"> 
  <img src="screenshots/logo.jpg" height="600px" width="1000">
 
