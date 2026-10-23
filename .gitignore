@@ -21,3 +21,4 @@ yarn-error.log*
 students.xlsx
 .env
 /backend/charged-ridge-*.json
+repomix-output.md
