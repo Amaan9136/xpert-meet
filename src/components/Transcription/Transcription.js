@@ -1,8 +1,8 @@
 import { faTimes, faUserFriends } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext, useEffect } from "react";
-import "./Transcription.css";
 import { AppContext } from '../../AppContext';
+import "./Transcription.css";
 
 const Transcription = ({ setMeetingState }) => {
   const { appData, setAppData , participantsData } = useContext(AppContext);
@@ -10,7 +10,7 @@ const Transcription = ({ setMeetingState }) => {
 
   const startRecognition = () => {
     const recognition = new window.webkitSpeechRecognition();
-    recognition.lang = ['en-US', 'en-GB'];
+    recognition.lang = ['en-US', 'kn-IN'];
     recognition.continuous = true;
     recognition.interimResults = true;
 
@@ -55,7 +55,7 @@ const Transcription = ({ setMeetingState }) => {
 
   return (
     <>
-      <div className={`messenger-container from-left mx-2 my-3`}>
+      <div className={`messenger-container w-[320px] from-left mx-2 my-3`}>
           <div className="messenger-header text-2xl">
             <h1>Xpert Transcriber</h1>
             <FontAwesomeIcon

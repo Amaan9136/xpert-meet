@@ -9,10 +9,13 @@ import {
   faMessage,
   faMicrophone,
   faMicrophoneSlash,
+  faNoteSticky,
+  faPenToSquare,
   faPhone,
+  faSignLanguage,
   faSlash,
   faVideo,
-  faVideoSlash,
+  faVideoSlash
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useContext, useEffect, useState } from "react";
@@ -24,7 +27,7 @@ import Model from "../Model/Model";
 import "./MeetingFooter.css";
 
 const MeetingFooter = (props) => {
-  const { appState, setAppState } = useContext(AppContext);
+  const { appState, setAppState, participantsData } = useContext(AppContext);
   const { meetingState, setMeetingState } = props;
   const navigate = useNavigate();
   const [streamState, setStreamState] = useState({
@@ -69,16 +72,28 @@ const MeetingFooter = (props) => {
     });
   };
 
-  function onKeyClick() {
-    setAppState({
-      loaderShow: false,
-      model: {
-        showModel: true,
-        modelNeedInput: true,
-        modelType: 'keys',
-        modelMsg: "Enter a Key Points or short note:"
-      }
-    });
+  function onClickIcon(btnType) {
+    if (btnType === 'keys') {
+      setAppState({
+        loaderShow: false,
+        model: {
+          showModel: true,
+          modelNeedInput: true,
+          modelType: 'keys',
+          modelMsg: "Enter a Key Points on this meeting:"
+        }
+      });
+    } else if (btnType === 'notes') {
+      setAppState({
+        loaderShow: false,
+        model: {
+          showModel: true,
+          modelType: 'notes',
+          modelMsg: participantsData.isHost ? "Upload the notes or materials:" : "Download Notes"
+        }
+      });
+    }
+    
   }
 
   useEffect(() => {
@@ -125,6 +140,30 @@ const MeetingFooter = (props) => {
         >
           <FontAwesomeIcon icon={faDesktop} />
         </div>
+        <div
+          className={`meeting-icons ${props.meetingState.showJam ? "active" : ""}`}
+          title={props.meetingState.showJam ? "Close Jam Board" : "Jam Board"}
+          onClick={() =>
+            setMeetingState((prev) => ({
+              showJam: !prev.showJam,
+            }))
+          }
+          disabled={streamState.screen}
+        >
+          <FontAwesomeIcon icon={faPenToSquare} />
+        </div>
+        <div
+          className={`meeting-icons ${props.meetingState.showSign ? "active" : ""}`}
+          title={props.meetingState.showSign ? "Close Sign Language" : "Sign Langugeae"}
+          onClick={() =>
+            setMeetingState((prev) => ({
+              showSign: !prev.showSign,
+            }))
+          }
+          disabled={streamState.screen}
+        >
+          <FontAwesomeIcon icon={faSignLanguage} />
+        </div>
         <div className="meeting-icons active" onClick={handleEndCall}
           title="End Call">
           <FontAwesomeIcon icon={faPhone} />
@@ -143,7 +182,7 @@ const MeetingFooter = (props) => {
             icon={meetingState.meetingInfo ? faLink : faLinkSlash}
           />
         </div>
-        <div className={`meeting-icons ${appState.model.showModel && appState.model.modelType === 'keys' ? "" : "active"}`} onClick={onKeyClick}
+        <div className={`meeting-icons ${appState.model.showModel && appState.model.modelType === 'keys' ? "" : "active"}`} onClick={() => onClickIcon('keys')}
           title="Key Points">
           {appState.model.showModel && appState.model.modelType === 'keys' ? (
             <FontAwesomeIcon icon={faKey} />
@@ -155,6 +194,23 @@ const MeetingFooter = (props) => {
               />
               <FontAwesomeIcon
                 icon={faKey}
+                className="relative"
+              />
+            </>
+          )}
+        </div>
+        <div className={`meeting-icons ${appState.model.showModel && appState.model.modelType === 'notes' ? "" : "active"}`} onClick={() => onClickIcon('notes')}
+          title="Notes">
+          {appState.model.showModel && appState.model.modelType === 'notes' ? (
+            <FontAwesomeIcon icon={faNoteSticky} />
+          ) : (
+            <>
+              <FontAwesomeIcon
+                icon={faSlash}
+                className="absolute mobile-hide"
+              />
+              <FontAwesomeIcon
+                icon={faNoteSticky}
                 className="relative"
               />
             </>

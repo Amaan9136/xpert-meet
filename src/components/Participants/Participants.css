@@ -4,17 +4,17 @@
   grid-gap: 20px;
   height: 85vh;
   padding: 10px;
-  }
+}
 
-.participants img{
-    border-radius: 50%; 
-    height: 120px; 
-    width: 120px;
-  }
+.participants img {
+  border-radius: 50%;
+  height: 120px;
+  width: 120px;
+}
 
-  @media (max-width: 800px) {
-    .participants {
-      grid-template-columns: repeat(var(--grid-col-size), 1fr);
-      grid-template-rows: repeat(var(--grid-row-size), 1fr);
-    }
+@media (max-width: 800px) {
+  .participants {
+    grid-template-columns: repeat(var(--grid-col-size), 1fr);
+    grid-template-rows: repeat(var(--grid-row-size), 1fr);
   }
+}

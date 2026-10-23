@@ -1,4 +1,4 @@
-// https://amaan9136.pythonanywhere.com
+// https://wxm-back.vercel.app
 // http://localhost:5000
 
 export function checkInternetConnection() {
@@ -8,12 +8,36 @@ export function checkInternetConnection() {
   }
 }
 
+export const generateChatbotSummary = async (dataToSummarize) => {
+  try {
+    const response = await fetch(`http://localhost:5000/text-to-summary`, {
+      method: 'POST',
+      body: JSON.stringify({ transcription: dataToSummarize }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (response.ok) {
+      const responseData = await response.text();
+      return responseData;
+    } else {
+      console.error('Response Error:', response.status, response.statusText);
+      return 'Error generating summary';
+    }
+  } catch (error) {
+    console.error('Request Error:', error);
+    return 'Error generating summary';
+  }
+};
+
 export const generateSummary = async (setGenerate, transcription) => {
   try {
-    setGenerate({
-      isGenerating: true,
-      generatedMsg: 'Generating Brief Description...'
-    });
+      setGenerate(prevState => ({
+        ...prevState,
+        isGenerating: true,
+        generatedMsg: 'Generating Brief Description...'
+      }));
 
     const response = await fetch(`http://localhost:5000/text-to-summary`, {
       method: 'POST',
@@ -25,10 +49,11 @@ export const generateSummary = async (setGenerate, transcription) => {
 
     if (response.ok) {
       const responseData = await response.text();
-      setGenerate({
+      setGenerate(prevState => ({
+        ...prevState,
         isGenerating: false,
         generatedMsg: responseData,
-      });
+      }));
     } else {
       console.error(response.status, response.statusText);
     }
@@ -36,6 +61,40 @@ export const generateSummary = async (setGenerate, transcription) => {
     console.error('Sending Request Error:', error);
   }
 };
+
+export const takeQuiz = async (setGenerate, keyPoints) => {
+  console.log(keyPoints)
+  try {
+    setGenerate(prevState => ({
+      ...prevState,
+      isGeneratingQuiz: true,
+      generatedQuiz: 'Generating Quiz...'
+    }));
+
+    const response = await fetch(`http://localhost:5000/take-quiz`, {
+      method: 'POST',
+      body: JSON.stringify({ keyPoints }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (response.ok) {
+      const responseData = await response.text();
+      setGenerate(prevState => ({
+        ...prevState,
+        isGeneratingQuiz: false,
+        generatedQuiz: responseData.replace(/```/g, '').replace(/html/g, '')
+      }));
+    } else {
+      console.error(response.status, response.statusText);
+    }
+  } catch (error) {
+    console.error('Sending Request Error:', error);
+  }
+};
+
+
 
 export const downloadVideo = async (setAppState) => {
   setAppState(prevState => ({
@@ -87,41 +146,61 @@ export const startVideoRecording = async () => {
 
 export const stopVideoRecording = async () => {
   try {
-    const response = await fetch("http://localhost:5000/stop-record", {
-      method: 'GET'
-    });
-    if (response.ok) {
-      console.log('Video recording stopped successfully!');
-    } else {
-      console.error('Failed to stop video recording:', response.status, response.statusText);
-    }
+    // remove the notes folder to clean the storage
+    // dont do this if you want to keep the notes in storage
+    /**
+     * if you want to download notes even after reaching the summery page then delete below line of code "remove-notes" and 
+     * make it to setTimeout so that you can delete after 1 min or something like that and
+     * give a button in summery page to download this zip file
+     */
+    await fetch("http://localhost:5000/remove-notes");
+    await fetch("http://localhost:5000/stop-record");
   } catch (error) {
-    console.error('Error stopping video recording:', error);
+    console.error("Error stopping video recording:", error);
+    // Handle the error, e.g., show an error message to the user
   }
 };
 
-export function handleSendMail(setAppState, title, message, modelType='check-mail') {
+
+export function handleSendMail(setAppState, title, message, file, modelMailType) {
+  if (!file || file.size === 0 || file === undefined) {
+    setAppState(prevState => ({
+      ...prevState,
+      model: {
+        showModel: true,
+        modelNeedInput: false,
+        modelType: modelMailType,
+        modelMsg: 'Please upload the file containing email again.',
+      },
+    }));
+    return; 
+  }
+
   setAppState(prevState => ({
     ...prevState,
     loaderShow: true,
-    loaderMsg: 'Sending email...'
+    loaderMsg: 'Sending email...',
   }));
+
+  const formData = new FormData();
+  formData.append('title', title);
+  formData.append('message', message);
+  formData.append('file', file);
+
   fetch('http://localhost:5000/send-mail', {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ title, message }),
+    body: formData,
   })
     .then(response => response.text())
     .then(data => {
+      const modelType = data.includes('Incorrect file type') || data === 'No email addresses found in the file.' ? 'add-email' : '';
       setAppState({
         loaderShow: false,
         model: {
           showModel: true,
           modelNeedInput: false,
+          modelType: modelType,
           modelMsg: data,
-          modelType: modelType
         },
       });
     })
@@ -150,3 +229,102 @@ export const onScreenshotClick = async () => {
   }
 };
 
+export const uploadNotes = async (setAppState, file) => {
+  if (!file || file.size === 0 || file === undefined) {
+    setAppState(prevState => ({
+      ...prevState,
+      model: {
+        showModel: true,
+        modelNeedInput: false,
+        modelType: 'notes', 
+        modelMsg: 'Please upload a valid file.',
+      },
+    }));
+    return;
+  }
+
+  setAppState(prevState => ({
+    ...prevState,
+    loaderShow: true,
+    loaderMsg: 'Sharing Notes with participants...',
+  }));
+
+  const formData = new FormData();
+  formData.append('file', file);
+
+  fetch('http://localhost:5000/upload-notes', {
+    method: 'POST',
+    body: formData,
+  })
+    .then(data => {
+      const modelType = data.includes('Error uploading file') || data === 'File size exceeds 10 MB limit' ? 'notes' : '';
+
+      setAppState({
+        loaderShow: false,
+        model: {
+          showModel: true,
+          modelNeedInput: false,
+          modelType: modelType,
+          modelMsg: data,
+        },
+      });
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+};
+
+export const downloadNotes = async (setAppState, notesLists) => {
+  if (!notesLists || notesLists.length === 0) {
+    setAppState((prevState) => ({
+      ...prevState,
+      model: {
+        showModel: true,
+        modelNeedInput: false,
+        modelType: 'notes',
+        modelMsg: 'No Notes uploaded yet!',
+      },
+    }));
+    return;
+  }
+
+  setAppState((prevState) => ({
+    ...prevState,
+    loaderShow: true,
+    loaderMsg: 'Downloading Notes...',
+  }));
+
+  const body = JSON.stringify({ notesLists: notesLists });
+
+  try {
+    const response = await fetch('http://localhost:5000/download-notes', {
+      method: 'POST',
+      body,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error downloading notes: ${response.statusText}`);
+    }
+
+    const blob = await response.blob();
+    const link = document.createElement('a');
+    link.href = window.URL.createObjectURL(blob); 
+    link.download = 'combined_files.zip'; 
+    link.click(); 
+
+  } catch (error) {
+    console.error('Error:', error);
+    setAppState((prevState) => ({
+      ...prevState,
+      model: {
+        showModel: true,
+        modelNeedInput: false,
+        modelType: 'notes',
+        modelMsg: 'Error downloading notes!',
+      },
+    }));
+  } 
+};

@@ -2,10 +2,12 @@ import React, { useEffect, useRef, useState } from "react";
 import { connect } from "react-redux";
 import { setMainStream, updateUser } from "../../store/actioncreator";
 import Chatbot from "../Chatbot/Chatbot";
+import JamBoard from "../JamBoard/JamBoard";
 import MeetingFooter from "../MeetingFooter/MeetingFooter.component";
 import MeetingInfo from "../MeetingInfo/MeetingInfo";
 import MessageBox from '../MessageBox/MessageBox';
 import Participants from "../Participants/Participants.component";
+import Sign from "../Sign/Sign";
 import Transcription from "../Transcription/Transcription";
 import "./MainScreen.css";
 
@@ -13,9 +15,11 @@ const MainScreen = (props) => {
   const participantRef = useRef(props.participants);
   const [meetingState, setMeetingState] = useState({
     meetingInfo: false,
-    showTranscripts: window.innerWidth >= 768, 
+    showTranscripts: window.innerWidth >= 768,
     showChatbot: false,
     showMessage: false,
+    showJam: false,
+    showSign: false,
   });
   const onMicClick = (micEnabled) => {
     if (props.stream) {
@@ -85,6 +89,9 @@ const MainScreen = (props) => {
         <div className="flex-1">
         {window.innerWidth <= 500 && (meetingState.showTranscripts || meetingState.showChatbot || meetingState.showMessage) ? null : <Participants />}
         </div> 
+        {/* <Cheat/> */}
+        {meetingState.showJam && <JamBoard setMeetingState={setMeetingState}/>}
+        {meetingState.showSign && <Sign setMeetingState={setMeetingState} />}
         {meetingState.meetingInfo && <MeetingInfo setMeetingState={setMeetingState} name={props.name} />}
         {meetingState.showTranscripts && <Transcription setMeetingState={setMeetingState} />}
         {meetingState.showChatbot && <div className="from-left mx-2 my-3"><Chatbot /></div>}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Mode Trail</title>
+</head>
+
+<body>
+    <h1>Exam Mode Trail</h1>
+    <img src="http://localhost:5000/video_feed" width="640" height="480" />
+    <div id="copy-status"></div>
+</body>
+<script>
+    const resultDiv = document.getElementById('copy-status');
+
+    async function isCopying() {
+        try {
+            const response = await fetch('http://localhost:5000/is_copying');
+            const data = await response.json();
+            console.log(data);
+            const isCopying = data.isCopying;
+            const copyDirection = data.copyDirection;
+            const copyCount = data.copyCount;
+            resultDiv.textContent = `Is copying: ${isCopying}, Copy direction: ${copyDirection}, Copy Count: ${copyCount}`;
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            resultDiv.textContent = 'Error fetching data';
+        }
+    }
+
+    setInterval(() => {
+        isCopying();
+    }, 300);
+</script>
+
+</html>

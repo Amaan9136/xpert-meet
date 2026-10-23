@@ -1,50 +1,104 @@
-# video-call-using-ai
+<h1 align="center">WeXpert-meet</h1> 
 
 <p align="center"> 
-  <h3 align="center">WeXpert Meet </h3>
+ <img src="screenshots/logo.jpg" height="600px" width="1000">
 
   <p align="center">
-    video-call-using-ai!
-    <br />  
-     A Video Conference App - WeXpert Meet
-    <br />
+    A Video Conference App with AI Plugins- WeXpert Meet
   </p>
 </p>
+
+## Abstract
+<b>WeXpert Meet provides features like real-time transcription, automatic summary generation, noise cancellation, a chatbot for meeting interaction, and the ability to send the generated video call summary through email to participants in single button.
+</b>
 
 <!-- TABLE OF CONTENTS -->
 
 ## Table of Contents
-
-- [How To Run](#usage)
-- [ScreenShots](#demo)
-- [Contact](#contact)
+- Features
+- Usage
+- Technology Stack
+- Installation
+- Demo
 
 <!-- tutorial -->
+# Features
+## Office Mode
+- Generate key points from meetings
+- Share screens and documents
+- Collaborative whiteboard
+## Class Mode
+- Generate quizzes and assessments
+- Interactive whiteboard for teaching
+- Student participation tracking
+- Real-time polling
+## Exam Mode
+- Detect copied content and plagiarism
+- Monitor students during exams with proctoring features
+- Timer and submission management
+
 
 <!-- Prerequisites -->
+# Usage
+## Office Mode
+- Select "Office Mode" from the main menu.
+- Start or join a meeting.
+- Use the key points generator to summarize the meeting.
+## Class Mode
+- Generate quizzes and assessments
+- Interactive whiteboard for teaching
+- Student participation tracking
+## Exam
+- Detect copied content and plagiarism
+- Monitor students during exams with proctoring features
+- Timer and submission management
 
-## Usage
+# Technology Stack
+- **Frontend:** React, Tailwind CSS
+- **Backend:** Node.js, Python 
+- **Database:** Firebase
+- **Real-time Communication:** WebRTC (for video conferencing)
+- The App can support upto 18 users without having any UI alignment issues and supports many with a little UI issues
+# Installation 
 <!-- install dependencies -->
-# FontAwesome
+## FontAwesome
+```bash
 npm install --save @fortawesome/react-fontawesome @fortawesome/free-solid-svg-icons
+```
 
-# XLSX for Excel file handling
+## XLSX for Excel file handling
+```bash
 npm install --save xlsx
+```
 
-# React Router
+## React Router
+```bash
 npm install --save react-router-dom
+```
 
-# React Redux
+## React Redux
+```bash
 npm install --save react-redux redux
+```
 
-# React Tooltip
+## React Tooltip
+```bash
 npm install --save react-tooltip
+```
 
-# React Calendar
+## React Calendar
+```bash
 npm install --save react-calendar
+```
+## Google Authentication Key
+```bash
+npm install react-google-login
+```
 
-# Firebase
+## Firebase
+```bash
 npm install --save firebase
+```
 
 <!-- run below commands -->
 - Run npm install.
@@ -55,18 +109,21 @@ npm install --save firebase
 
 ## Demo
 
-- The App can support upto 8-12 users without having any UI alignment issues
+### Demo Video Link
+https://drive.google.com/file/d/1ab_xpvM2uC3r7pI69L5MSFAgyZT1fw1Q/view
+<br/>
+👆👆👆👆
 
-- Desktop View
-  ![](screenshots/Desktop%20View.jpg)
+### Demo Presentation Link
+https://www.canva.com/design/DAGHdsTabMw/t4ZVZM6K-1Rvpby1GuCpXA/view?utm_content=DAGHdsTabMw&utm_campaign=designshare&utm_medium=link&utm_source=editor
+<br/>
+👆👆👆👆
 
-- Desktop Sharing View
-  ![](screenshots/Screenshare.jpg)
+### Demo Webpage Link
 
-- Mobile View
-  <br />
-
-![](screenshots/Mobile%20View.jpg)
+https://xpert-video-meet.vercel.app/
+<br/>
+👆👆👆👆
 
 <!-- CONTACT -->
 
@@ -74,4 +131,4 @@ npm install --save firebase
 
 Instagram - [@Instagram](https://www.instagram.com/amaan.m.k/) - syedkhalander66@gmail.com 
 
-Project Link: [https://github.com/Amaan9136/video-call-using-ai](https://github.com/Amaan9136/video-call-using-ai)
+Project Link: [https://github.com/Amaan9136/xpert-meet](https://github.com/Amaan9136/xpert-meet)

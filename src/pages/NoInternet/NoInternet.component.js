@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import styles from './NoInternet.module.css';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { checkInternetConnection } from '../../server/http';
+import styles from './NoInternet.module.css';
 
 export default function NoInternet() {
   const navigate = useNavigate();

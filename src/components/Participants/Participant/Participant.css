@@ -5,6 +5,34 @@
     border-radius: 5px;
   }
 
+  .card-menu {
+    font-size: larger;
+    color: white;
+    bottom: 10px;
+    position: absolute;
+    right: 20px;
+  }
+
+  .card-menu-box{
+    margin: 0;
+    font-size: 12px;
+    background-color: white;
+    color: black;
+    position: absolute;
+    border-radius: 10px;
+    bottom: 25px;
+    right: 0px;
+  }
+  
+  .card-menu-btn{
+    padding: 6px 10px;
+    width: 110px;
+  }
+
+  .card-menu:hover{
+    cursor: pointer;
+  }
+
   .participant {
     background-color: black;
     height: 100%;
@@ -44,6 +72,14 @@
     justify-content: center;
     align-items: center;
     text-transform: uppercase;
+  }
+
+  .avatar-img{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 10;
   }
 
   .name {

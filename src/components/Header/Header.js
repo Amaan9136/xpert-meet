@@ -14,7 +14,7 @@ export default function Header({ handleCalendar, handleSettings }) {
     <>
       <div className="header">
         <div className="logo">
-          <p className='text-3xl'>WeXpert</p>
+          <p className='text-3xl'>Xpert</p>
           <span className='mt-3'>Meet</span>
         </div>
         <div>

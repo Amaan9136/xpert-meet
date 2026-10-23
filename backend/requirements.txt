@@ -2,3 +2,12 @@ Flask
 Flask-CORS
 python-dotenv
 google-generativeai
+python-docx
+openpyxl
+PyPDF2
+moviepy
+pyaudio
+pyautogui
+opencv-python
+mediapipe
+protobuf

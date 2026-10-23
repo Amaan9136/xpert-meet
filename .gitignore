@@ -1,5 +1,5 @@
 /node_modules
-/backend/gemini/.env
+/backend/.env
 /.pnp
 .pnp.js
 
@@ -17,3 +17,6 @@ yarn-debug.log*
 yarn-error.log*
 
 .vercel
+
+students.xlsx
+.env

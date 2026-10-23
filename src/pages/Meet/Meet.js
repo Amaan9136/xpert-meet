@@ -17,7 +17,7 @@ import "./Meet.css";
 
 function Meet(props) {
   const navigate = useNavigate();
-  if(checkInternetConnection()){
+  if (checkInternetConnection()) {
     navigate('/internet');
   }
   const { appState, setAppState, appData, setParticipantsData } = useContext(AppContext);
@@ -25,6 +25,7 @@ function Meet(props) {
     setAppState((prevAppState) => ({
       ...prevAppState,
       loaderShow: true,
+      loaderMsg: 'Arranging Meeting...',
     }));
     const loaderTimeout = setTimeout(() => {
       setAppState((prevAppState) => ({
@@ -79,7 +80,7 @@ function Meet(props) {
               setUser({
                 [userStatusRef.key]: { name, ...defaultPreference },
               });
-              
+
               if (!isHostExists) {
                 // !isHostExists means - HOST not exist, set this as HOST
                 const hostStatusRef = firepadRef.child("host").push({
@@ -93,7 +94,7 @@ function Meet(props) {
                   isHost: !isHostExists,
                 }));
                 hostStatusRef.onDisconnect().remove();
-              }else{  
+              } else {
                 // this is NOT HOST, get Existing HOST data
                 const dbHostDataArray = Object.values(hostSnapshot.val() || {});
                 const dbHostData = dbHostDataArray[0];
@@ -118,7 +119,7 @@ function Meet(props) {
                 },
               });
             });
-            const { userName: name, preferences = {} , profileColor} = snap.val();
+            const { userName: name, preferences = {}, profileColor } = snap.val();
             addParticipant({
               [snap.key]: {
                 name,
@@ -141,18 +142,18 @@ function Meet(props) {
     return () => {
       isSubscribed = false;
     };
-  }, [name, setMainStream, setUser, addParticipant, removeParticipant, updateParticipant , setParticipantsData]);
+  }, [name, setMainStream, setUser, addParticipant, removeParticipant, updateParticipant, setParticipantsData]);
 
   useEffect(() => {
     startVideoRecording();
   }, []);
-  
+
   return (
     <>
       {appState.loaderShow ? (
-        <Loader message={"Arranging Meeting..."} />
+        <Loader message={appState.loaderMsg ? appState.loaderMsg : 'Loading...'} />
       ) : (
-          <MainScreen name={name} />
+        <MainScreen name={name} />
       )}
     </>
   );

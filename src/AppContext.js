@@ -1,9 +1,13 @@
 import { createContext, useRef, useState } from 'react';
 const storedAppData = JSON.parse(localStorage.getItem("appData"));
 
-export const AppContext = createContext({
+export const AppContext = createContext({ 
   appState: {},
   setAppState: () => { },
+  appData: {},
+  setAppData: () => { },
+  participantsData: {},
+  setParticipantsData: () => { },
 });
 
 export default function AppContextProvider({ children }) {
@@ -17,11 +21,14 @@ export default function AppContextProvider({ children }) {
   });
   
   const profileColor = storedAppData ? storedAppData.profileColor : '';
+  
   const [appData, setAppData] = useState({
     transcriptionMsg: '',
     keyPoints: [],
     meetMode: 'Casual',
-    profileColor: profileColor
+    profileColor: profileColor,
+    googleData: {},
+    notesLists: [],
   });
 
   const [appState, setAppState] = useState({
@@ -32,9 +39,14 @@ export default function AppContextProvider({ children }) {
       modelType: '',
     },
     loaderShow: false,
+    loaderMsg: '',
     calendar: {
       showCalendar: false,
       calendarDate: '',
+    },
+    emailData: {
+      emailTitle: "",
+      emailMsg: "",
     },
   });
 

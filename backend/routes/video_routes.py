@@ -115,8 +115,11 @@ def stop_recording():
         audio_output_file = 'backend/records/audioRecords/output.wav'
         output_combined_file = 'backend/records/combinedRecords/output_combined.mp4'
         combine_audio_video(video_output_file, audio_output_file, output_combined_file)
+        
+        # remove folders after call has been ended
         os.remove(video_output_file)
-        os.remove(audio_output_file)
+        os.remove(audio_output_file) 
+        
         return 'Video and Audio recording stopped and saved'
     else:
         return 'No recording in progress'

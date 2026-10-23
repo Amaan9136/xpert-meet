@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useRef } from "react";
-import "./Participants.css";
 import { connect } from "react-redux";
-import { Participant } from "./Participant/Participant.component";
 import { AppContext } from '../../AppContext';
+import { Participant } from "./Participant/Participant.component";
+import "./Participants.css";
 
 const Participants = (props) => {
   const { setParticipantsData } = useContext(AppContext);

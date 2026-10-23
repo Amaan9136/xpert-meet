@@ -1,7 +1,7 @@
 .chatbot {
   width: 350px;
   max-width: 500px;
-  max-height: 36.25rem;
+  max-height: 36rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -142,6 +142,11 @@ input:focus, .circle:focus, .send:focus , button:focus {
 
 .typing-animation {
   animation: typing 0.5s ease-in-out infinite;
+}
+
+.bot-table th, .bot-table td {
+  padding: 2px;
+  border: 1px solid white;
 }
 
 @keyframes typing {

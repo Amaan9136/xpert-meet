@@ -18,7 +18,14 @@ export default function Home({ setUserName }) {
   }
   const inputRef = useRef(null);
   const joinRef = useRef(null);
-  const { appState, setAppState, participantsData } = useContext(AppContext);
+  const { appState, setAppState, participantsData, setAppData, appData } = useContext(AppContext);
+
+  useEffect(() => {
+    const storedGoogleData =  JSON.parse(localStorage.getItem('googleData'))
+    setAppData((prev) => ({ ...prev, googleData: storedGoogleData }));
+  }, []);
+
+
   function handleCalendar() {
     setAppState((prevAppState) => ({
       ...prevAppState,
@@ -100,9 +107,9 @@ export default function Home({ setUserName }) {
         loaderShow: false,
         model: {
           showModel: true,
-          modelNeedInput: true,
-          modelType: 'check-email',
-          modelMsg: "Would you like to send a meeting reminder via email? If yes, please provide the description of the email."
+          modelNeedInput: false,
+          modelType: 'add-mail',
+          modelMsg: "Would you like to send notifications via email? If yes, please upload the file having email in it."
         }
       });
       setUserName(name);
@@ -171,14 +178,14 @@ export default function Home({ setUserName }) {
       )}
       {appState.calendar && appState.calendar.showCalendar && (
         <div className="transparent-background">
-        <div className="calendar from-top">
-          <Calendar
-            className='react-calendar'
-            onChange={handleCalendarChange}
-            value={appState.calendar.calendarDate || new Date()}
-          />
-          <button className="text-[1.2rem] px-4 py-2 from-left w-full border-t hover:bg-stone-800 transition duration-300" onClick={handleCalendar}>Close</button>
-        </div>
+          <div className="calendar from-top">
+            <Calendar
+              className='react-calendar'
+              onChange={handleCalendarChange}
+              value={appState.calendar.calendarDate || new Date()}
+            />
+            <button className="text-[1.2rem] px-4 py-2 from-left w-full border-t hover:bg-stone-800 transition duration-300" onClick={handleCalendar}>Close</button>
+          </div>
         </div>
       )}
       <div className="home-page">
@@ -196,6 +203,7 @@ export default function Home({ setUserName }) {
                   <FontAwesomeIcon className="icon-block" icon={faKeyboard} />
                   <input
                     ref={inputRef}
+                    defaultValue={appData.googleData?.givenName || ""}
                     placeholder="Enter Name to Host"
                   />
                 </div>

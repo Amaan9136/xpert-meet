@@ -6,6 +6,7 @@ const userMessage = [
   /* 05 */["bye", "good bye", "take care"],
   /* 06 */["feedback", "report", "opinion","rating","thanks", "happy", "good", "fun", "wonderful", "fantastic", "cool", "very good", "awesome", "nice", "excellent"],
   /* 07 */["bad", "help", "bored", "tired", "not good", "feeling down", "feeling low", "i am sad", "sad"],
+
   // More questions can be added here
 ];
 
@@ -26,6 +27,7 @@ const botReply = [
     "Is there anything specific you'd like to talk about or any questions you have? 😊",
     "I'm here to provide a listening ear. Feel free to share as much or as little as you're comfortable with. 🤗"
   ],
+
   // More responses can be added here
 ];
 
